@@ -1,0 +1,113 @@
+{
+  "name": "DataPartnershipTask",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Task title"
+    },
+    "partner_name": {
+      "type": "string",
+      "description": "Name of the organization/partner"
+    },
+    "data_source": {
+      "type": "string",
+      "enum": [
+        "bury_council_asc",
+        "nhs_bury_icb",
+        "gp_patient_data",
+        "data_broker",
+        "council_housing",
+        "electoral_roll",
+        "community_networks"
+      ],
+      "description": "Type of data source"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "immediate",
+        "medium-term",
+        "ongoing"
+      ],
+      "default": "medium-term"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "pending_response",
+        "agreement_drafted",
+        "active",
+        "completed"
+      ],
+      "default": "not_started"
+    },
+    "description": {
+      "type": "string",
+      "description": "What needs to be done"
+    },
+    "key_contact_name": {
+      "type": "string"
+    },
+    "key_contact_role": {
+      "type": "string"
+    },
+    "key_contact_email": {
+      "type": "string"
+    },
+    "key_contact_phone": {
+      "type": "string"
+    },
+    "action_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "task": {
+            "type": "string"
+          },
+          "completed": {
+            "type": "boolean",
+            "default": false
+          },
+          "owner": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+    "estimated_volume": {
+      "type": "string",
+      "description": "Expected number of records/month"
+    },
+    "estimated_cost": {
+      "type": "number",
+      "description": "Annual cost in \u00a3"
+    },
+    "expected_launch_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URLs to agreement docs, templates, etc."
+    }
+  },
+  "required": [
+    "title",
+    "partner_name",
+    "data_source"
+  ]
+}

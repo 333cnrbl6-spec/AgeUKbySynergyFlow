@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { 
   LayoutDashboard, Users, Wrench, Calendar, Receipt, 
   UserCog, Menu, X, ChevronRight, Heart, Truck, Building2,
-  PoundSterling, PhoneIncoming, Handshake, Shield, BarChart3, Link2, Clock
+  PoundSterling, PhoneIncoming, Handshake, Shield, BarChart3, Link2, Clock, Network
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +15,7 @@ const navItems = [
   { label: "Calendar", path: "/calendar", icon: Calendar },
   { label: "Activities", path: "/activities", icon: Calendar },
   { label: "Services & Map", path: "/services", icon: Building2 },
+  { label: "Data Partnerships", path: "/partnerships", icon: Network },
   { label: "Invoices", path: "/invoices", icon: Receipt },
   { label: "Suppliers", path: "/suppliers", icon: Truck },
   { label: "Facilities", path: "/facilities", icon: Building2 },
