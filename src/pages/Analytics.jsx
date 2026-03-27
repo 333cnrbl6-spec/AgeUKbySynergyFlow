@@ -8,10 +8,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { TrendingUp, Users, Target, MapPin, Zap, Heart, Activity, Clock } from 'lucide-react';
+import { TrendingUp, Users, Target, MapPin, Zap, Heart, Activity, Clock, Download, Loader } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function Analytics() {
   const [dateRange, setDateRange] = useState('all');
+  const [downloading, setDownloading] = useState(false);
 
   // Fetch data
   const { data: prospects = [] } = useQuery({
@@ -245,6 +247,33 @@ export default function Analytics() {
 
   const COLORS = ['#7c3aed', '#f59e0b', '#10b981', '#3b82f6', '#ef4444', '#8b5cf6', '#ec4899'];
 
+  const handleDownloadReport = async () => {
+    setDownloading(true);
+    try {
+      const response = await base44.functions.invoke('generateAnalyticsReport', {
+        metrics: conversionMetrics,
+        conversionFunnel,
+        serviceUsageTrends,
+        areaDemandData
+      });
+
+      // Create a blob and download
+      const blob = new Blob([response.data], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `analytics-report-${new Date().toISOString().split('T')[0]}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Failed to download report:', error);
+    } finally {
+      setDownloading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -254,6 +283,23 @@ export default function Analytics() {
             <h1 className="text-3xl font-bold text-foreground">Analytics Dashboard</h1>
             <p className="text-muted-foreground mt-1">Prospect conversion, service demand, and referral insights</p>
           </div>
+          <Button 
+            onClick={handleDownloadReport} 
+            disabled={downloading}
+            className="gap-2"
+          >
+            {downloading ? (
+              <>
+                <Loader className="w-4 h-4 animate-spin" />
+                Generating...
+              </>
+            ) : (
+              <>
+                <Download className="w-4 h-4" />
+                Download Report
+              </>
+            )}
+          </Button>
         </div>
 
         {/* KPI Cards */}
