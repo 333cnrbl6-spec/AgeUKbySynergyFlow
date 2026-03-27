@@ -60,6 +60,11 @@
         "inactive"
       ],
       "default": "active"
+    },
+    "dementia_related": {
+      "type": "boolean",
+      "default": false,
+      "description": "Has dementia or dementia-related support needs"
     }
   },
   "required": [
