@@ -21,6 +21,7 @@ import Partners from './pages/Partners';
 import Compliance from './pages/Compliance';
 import ImpactReporting from './pages/ImpactReporting';
 import XeroIntegration from './pages/XeroIntegration';
+import Timesheets from './pages/Timesheets';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -62,6 +63,7 @@ const AuthenticatedApp = () => {
         <Route path="/compliance" element={<Compliance />} />
         <Route path="/impact" element={<ImpactReporting />} />
         <Route path="/xero" element={<XeroIntegration />} />
+        <Route path="/timesheets" element={<Timesheets />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
