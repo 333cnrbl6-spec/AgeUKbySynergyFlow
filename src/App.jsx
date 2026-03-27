@@ -27,6 +27,7 @@ import Prospects from './pages/Prospects';
 import Services from './pages/Services';
 import DataPartnerships from './pages/DataPartnerships';
 import Analytics from './pages/Analytics';
+import MapDashboard from './pages/MapDashboard';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -74,6 +75,7 @@ const AuthenticatedApp = () => {
         <Route path="/xero" element={<XeroIntegration />} />
         <Route path="/timesheets" element={<Timesheets />} />
         <Route path="/analytics" element={<Analytics />} />
+        <Route path="/map" element={<MapDashboard />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
