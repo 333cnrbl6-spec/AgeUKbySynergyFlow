@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { 
   LayoutDashboard, Users, Wrench, Calendar, Receipt, 
   UserCog, Menu, X, ChevronRight, Heart, Truck, Building2,
-  PoundSterling, PhoneIncoming, Handshake, Shield, BarChart3
+  PoundSterling, PhoneIncoming, Handshake, Shield, BarChart3, Link2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +21,7 @@ const navItems = [
   { label: "Compliance", path: "/compliance", icon: Shield },
   { label: "Impact & Reports", path: "/impact", icon: BarChart3 },
   { label: "Staff", path: "/staff", icon: UserCog },
+  { label: "Xero", path: "/xero", icon: Link2, xero: true },
 ];
 
 export default function Sidebar() {
@@ -67,10 +68,16 @@ export default function Sidebar() {
                   : "text-white/70 hover:bg-sidebar-accent/50 hover:text-white"
               )}
             >
-              <Icon className={cn("w-4 h-4 flex-shrink-0", active && "text-secondary")} />
+              {item.xero ? (
+                <span className="w-4 h-4 flex-shrink-0 rounded-sm flex items-center justify-center text-xs font-bold italic" style={{ backgroundColor: '#13B5EA', color: 'white', fontSize: '10px' }}>x</span>
+              ) : (
+                <Icon className={cn("w-4 h-4 flex-shrink-0", active && "text-secondary")} />
+              )}
               {!collapsed && (
                 <>
-                  <span className="text-sm">{item.label}</span>
+                  <span className={cn("text-sm", item.xero && "font-medium")} style={item.xero ? { color: '#13B5EA' } : {}}>
+                    {item.label}
+                  </span>
                   {active && <ChevronRight className="w-4 h-4 ml-auto opacity-60" />}
                 </>
               )}

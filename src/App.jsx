@@ -20,6 +20,7 @@ import Referrals from './pages/Referrals';
 import Partners from './pages/Partners';
 import Compliance from './pages/Compliance';
 import ImpactReporting from './pages/ImpactReporting';
+import XeroIntegration from './pages/XeroIntegration';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -60,6 +61,7 @@ const AuthenticatedApp = () => {
         <Route path="/partners" element={<Partners />} />
         <Route path="/compliance" element={<Compliance />} />
         <Route path="/impact" element={<ImpactReporting />} />
+        <Route path="/xero" element={<XeroIntegration />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
