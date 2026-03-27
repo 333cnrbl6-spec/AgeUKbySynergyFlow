@@ -23,6 +23,7 @@ import Compliance from './pages/Compliance';
 import ImpactReporting from './pages/ImpactReporting';
 import XeroIntegration from './pages/XeroIntegration';
 import Timesheets from './pages/Timesheets';
+import Prospects from './pages/Prospects';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -52,6 +53,7 @@ const AuthenticatedApp = () => {
       <Route element={<AppLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/clients" element={<Clients />} />
+        <Route path="/prospects" element={<Prospects />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/calendar" element={<JobCalendar />} />
         <Route path="/activities" element={<Activities />} />

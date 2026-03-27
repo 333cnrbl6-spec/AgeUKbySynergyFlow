@@ -1,0 +1,115 @@
+{
+  "name": "Prospect",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "description": "Prospect's first name"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Prospect's last name"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "address_line_1": {
+      "type": "string"
+    },
+    "address_line_2": {
+      "type": "string"
+    },
+    "town": {
+      "type": "string",
+      "enum": [
+        "Bury",
+        "Ramsbottom",
+        "Tottington",
+        "Prestwich",
+        "Radcliffe",
+        "Whitefield"
+      ],
+      "description": "Must be in Age UK Bury catchment area"
+    },
+    "postcode": {
+      "type": "string"
+    },
+    "date_of_birth": {
+      "type": "string",
+      "format": "date"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "manual_entry",
+        "gp_list",
+        "council_data",
+        "event",
+        "referral_partner",
+        "other"
+      ],
+      "description": "Where the prospect came from"
+    },
+    "source_reference": {
+      "type": "string",
+      "description": "e.g. NHS list ID, council reference"
+    },
+    "estimated_age_group": {
+      "type": "string",
+      "enum": [
+        "50_64",
+        "65_74",
+        "75_84",
+        "85_plus",
+        "unknown"
+      ]
+    },
+    "likely_needs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "e.g. handyperson, befriending, information, mobility, dementia"
+    },
+    "contact_status": {
+      "type": "string",
+      "enum": [
+        "not_contacted",
+        "contacted",
+        "interested",
+        "not_interested",
+        "converted_to_client"
+      ],
+      "default": "not_contacted"
+    },
+    "contact_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "contact_method": {
+      "type": "string",
+      "enum": [
+        "phone",
+        "email",
+        "letter",
+        "visit",
+        "not_yet"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    },
+    "converted_client_id": {
+      "type": "string",
+      "description": "Link to Client record if converted"
+    }
+  },
+  "required": [
+    "first_name",
+    "last_name",
+    "town"
+  ]
+}

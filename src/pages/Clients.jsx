@@ -6,10 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Search, Phone, Mail, MapPin, Pencil } from "lucide-react";
 import ClientFormDialog from "../components/clients/ClientFormDialog";
+import ClientOnboardingDialog from "../components/clients/ClientOnboardingDialog";
 
 export default function Clients() {
   const [search, setSearch] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [editingClient, setEditingClient] = useState(null);
   const queryClient = useQueryClient();
 
@@ -49,9 +51,14 @@ export default function Clients() {
           <h1 className="text-2xl font-heading font-bold">Clients</h1>
           <p className="text-sm text-muted-foreground">{clients.length} registered clients</p>
         </div>
-        <Button onClick={() => { setEditingClient(null); setDialogOpen(true); }}>
-          <Plus className="w-4 h-4 mr-2" /> New Client
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => { setEditingClient(null); setOnboardingOpen(true); }}>
+            <Plus className="w-4 h-4 mr-2" /> Guided Onboarding
+          </Button>
+          <Button onClick={() => { setEditingClient(null); setDialogOpen(true); }}>
+            <Plus className="w-4 h-4 mr-2" /> Quick Add
+          </Button>
+        </div>
       </div>
 
       <div className="relative max-w-sm">
@@ -119,6 +126,13 @@ export default function Clients() {
         onOpenChange={setDialogOpen} 
         client={editingClient}
         onSave={handleSave}
+      />
+
+      <ClientOnboardingDialog
+        open={onboardingOpen}
+        onOpenChange={setOnboardingOpen}
+        prospect={null}
+        onComplete={handleSave}
       />
     </div>
   );

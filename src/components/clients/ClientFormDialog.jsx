@@ -21,6 +21,7 @@ const emptyClient = {
   first_name: "", last_name: "", phone: "", email: "",
   address_line_1: "", address_line_2: "", town: "", postcode: "",
   date_of_birth: "", notes: "", referral_source: "", status: "active",
+  dementia_related: false,
 };
 
 export default function ClientFormDialog({ open, onOpenChange, client, onSave }) {
@@ -105,6 +106,17 @@ export default function ClientFormDialog({ open, onOpenChange, client, onSave })
                 </SelectContent>
               </Select>
             </div>
+          </div>
+          <div>
+            <Label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={form.dementia_related}
+                onChange={(e) => update("dementia_related", e.target.checked)}
+                className="rounded"
+              />
+              Requires dementia-related support
+            </Label>
           </div>
           <div>
             <Label>Notes</Label>

@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { label: "Dashboard", path: "/", icon: LayoutDashboard },
   { label: "Clients", path: "/clients", icon: Users },
+  { label: "Prospects", path: "/prospects", icon: Users },
   { label: "Jobs", path: "/jobs", icon: Wrench },
   { label: "Calendar", path: "/calendar", icon: Calendar },
   { label: "Activities", path: "/activities", icon: Calendar },
