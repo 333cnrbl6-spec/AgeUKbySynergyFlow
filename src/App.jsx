@@ -34,6 +34,7 @@ import ComplimentaryServices from './pages/ComplimentaryServices';
 import HealthServices from './pages/HealthServices';
 import ClientDetails from './pages/ClientDetails';
 import ClientPortal from './pages/ClientPortal';
+import StaffCalendar from './pages/StaffCalendar';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -90,6 +91,7 @@ const AuthenticatedApp = () => {
         <Route path="/information" element={<InformationHub />} />
         <Route path="/services" element={<ComplimentaryServices />} />
         <Route path="/health" element={<HealthServices />} />
+        <Route path="/staff-calendar" element={<StaffCalendar />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

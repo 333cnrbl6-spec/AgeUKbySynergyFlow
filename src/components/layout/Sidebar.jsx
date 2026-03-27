@@ -33,6 +33,7 @@ const navItems = [
   { label: "Impact & Reports", path: "/impact", icon: BarChart3 },
   { label: "Timesheets", path: "/timesheets", icon: Clock },
   { label: "Staff", path: "/staff", icon: UserCog },
+  { label: "Staff Calendar", path: "/staff-calendar", icon: Calendar },
   { label: "Xero", path: "/xero", icon: Link2, xero: true },
 ];
 
