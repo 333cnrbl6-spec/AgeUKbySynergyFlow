@@ -1,0 +1,98 @@
+{
+  "name": "MaintenanceRequest",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "facility_id": {
+      "type": "string"
+    },
+    "facility_name": {
+      "type": "string"
+    },
+    "asset_id": {
+      "type": "string",
+      "description": "Related asset if applicable"
+    },
+    "asset_name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "plumbing",
+        "electrical",
+        "heating_cooling",
+        "structural",
+        "cleaning",
+        "equipment_repair",
+        "decoration",
+        "grounds",
+        "it",
+        "security",
+        "other"
+      ]
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "reported",
+        "assessed",
+        "scheduled",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ],
+      "default": "reported"
+    },
+    "description": {
+      "type": "string"
+    },
+    "reported_by": {
+      "type": "string"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Staff or supplier name"
+    },
+    "supplier_id": {
+      "type": "string"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "estimated_cost": {
+      "type": "number"
+    },
+    "actual_cost": {
+      "type": "number"
+    },
+    "po_id": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "facility_id",
+    "category"
+  ]
+}

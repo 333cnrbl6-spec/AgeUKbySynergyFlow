@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { 
   LayoutDashboard, Users, Wrench, Calendar, Receipt, 
-  UserCog, Menu, X, ChevronRight, Heart
+  UserCog, Menu, X, ChevronRight, Heart, Truck, Building2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +12,8 @@ const navItems = [
   { label: "Jobs", path: "/jobs", icon: Wrench },
   { label: "Calendar", path: "/calendar", icon: Calendar },
   { label: "Invoices", path: "/invoices", icon: Receipt },
+  { label: "Suppliers", path: "/suppliers", icon: Truck },
+  { label: "Facilities", path: "/facilities", icon: Building2 },
   { label: "Staff", path: "/staff", icon: UserCog },
 ];
 
@@ -43,7 +45,7 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-3 space-y-1">
+      <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.path);

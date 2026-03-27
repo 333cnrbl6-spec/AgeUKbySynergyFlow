@@ -1,0 +1,91 @@
+{
+  "name": "FacilityAsset",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Asset name/description"
+    },
+    "asset_tag": {
+      "type": "string",
+      "description": "Internal reference number"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "furniture",
+        "av_equipment",
+        "kitchen_equipment",
+        "cleaning",
+        "sports_equipment",
+        "hvac",
+        "electrical",
+        "plumbing",
+        "security",
+        "vehicle",
+        "it_equipment",
+        "other"
+      ]
+    },
+    "facility_id": {
+      "type": "string"
+    },
+    "facility_name": {
+      "type": "string"
+    },
+    "purchase_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "purchase_cost": {
+      "type": "number"
+    },
+    "supplier": {
+      "type": "string"
+    },
+    "warranty_expiry": {
+      "type": "string",
+      "format": "date"
+    },
+    "next_service_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "last_service_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "excellent",
+        "good",
+        "fair",
+        "poor",
+        "condemned"
+      ],
+      "default": "good"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "in_repair",
+        "disposed",
+        "lost"
+      ],
+      "default": "active"
+    },
+    "serial_number": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "category",
+    "facility_id"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "name": "Facility",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Facility name"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "centre",
+        "room",
+        "outdoor_area",
+        "kitchen",
+        "cafe",
+        "storage"
+      ],
+      "description": "Type of facility/space"
+    },
+    "parent_facility_id": {
+      "type": "string",
+      "description": "Parent centre ID if this is a room/space within a centre"
+    },
+    "parent_facility_name": {
+      "type": "string"
+    },
+    "address_line_1": {
+      "type": "string"
+    },
+    "town": {
+      "type": "string"
+    },
+    "postcode": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "capacity": {
+      "type": "number",
+      "description": "Max occupancy"
+    },
+    "hourly_rate": {
+      "type": "number",
+      "description": "Room hire rate per hour"
+    },
+    "half_day_rate": {
+      "type": "number"
+    },
+    "full_day_rate": {
+      "type": "number"
+    },
+    "description": {
+      "type": "string"
+    },
+    "amenities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "e.g. projector, kitchen access, PA system"
+    },
+    "opening_hours": {
+      "type": "string",
+      "description": "e.g. Mon-Fri 9:00-17:00"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "closed",
+        "under_maintenance"
+      ],
+      "default": "active"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "type"
+  ]
+}

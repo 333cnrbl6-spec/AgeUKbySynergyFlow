@@ -1,0 +1,67 @@
+{
+  "name": "CafeSale",
+  "type": "object",
+  "properties": {
+    "sale_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "till_session": {
+      "type": "string",
+      "enum": [
+        "morning",
+        "afternoon",
+        "all_day"
+      ],
+      "default": "all_day"
+    },
+    "items_sold": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unit_price": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "gross_takings": {
+      "type": "number",
+      "default": 0
+    },
+    "cash_takings": {
+      "type": "number",
+      "default": 0
+    },
+    "card_takings": {
+      "type": "number",
+      "default": 0
+    },
+    "covers": {
+      "type": "number",
+      "description": "Number of customers served"
+    },
+    "staff_on_duty": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "sale_date"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "name": "RoomBooking",
+  "type": "object",
+  "properties": {
+    "booking_ref": {
+      "type": "string"
+    },
+    "facility_id": {
+      "type": "string"
+    },
+    "facility_name": {
+      "type": "string"
+    },
+    "booking_type": {
+      "type": "string",
+      "enum": [
+        "external_hire",
+        "internal_activity",
+        "one_off_event",
+        "regular_session"
+      ],
+      "default": "external_hire"
+    },
+    "activity_name": {
+      "type": "string",
+      "description": "Name of class/event/group"
+    },
+    "organiser_name": {
+      "type": "string"
+    },
+    "organiser_phone": {
+      "type": "string"
+    },
+    "organiser_email": {
+      "type": "string"
+    },
+    "organiser_organisation": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "start_time": {
+      "type": "string"
+    },
+    "end_time": {
+      "type": "string"
+    },
+    "duration_hours": {
+      "type": "number"
+    },
+    "expected_attendees": {
+      "type": "number"
+    },
+    "recurring": {
+      "type": "boolean",
+      "default": false
+    },
+    "recurrence_pattern": {
+      "type": "string",
+      "enum": [
+        "weekly",
+        "fortnightly",
+        "monthly",
+        ""
+      ],
+      "default": ""
+    },
+    "recurrence_end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "setup_requirements": {
+      "type": "string"
+    },
+    "rate_type": {
+      "type": "string",
+      "enum": [
+        "hourly",
+        "half_day",
+        "full_day",
+        "free",
+        "donation"
+      ],
+      "default": "hourly"
+    },
+    "agreed_rate": {
+      "type": "number"
+    },
+    "total_charge": {
+      "type": "number"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "not_invoiced",
+        "invoiced",
+        "paid",
+        "waived"
+      ],
+      "default": "not_invoiced"
+    },
+    "invoice_id": {
+      "type": "string"
+    },
+    "deposit_paid": {
+      "type": "boolean",
+      "default": false
+    },
+    "deposit_amount": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "enquiry",
+        "provisional",
+        "confirmed",
+        "cancelled",
+        "completed"
+      ],
+      "default": "enquiry"
+    },
+    "cancellation_reason": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "facility_id",
+    "facility_name",
+    "activity_name",
+    "date",
+    "start_time"
+  ]
+}
