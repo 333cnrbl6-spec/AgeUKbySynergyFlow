@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, Search, MapPin, Phone, MessageSquare, ArrowRight } from "lucide-react";
 import ClientOnboardingDialog from "../components/clients/ClientOnboardingDialog";
+import WaitlistManager from "../components/services/WaitlistManager";
 
 const SOURCE_COLORS = {
   manual_entry: "bg-blue-100 text-blue-800",
@@ -72,17 +74,25 @@ export default function Prospects() {
 
   return (
     <div className="space-y-6 max-w-6xl">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-heading font-bold">Prospects</h1>
-          <p className="text-sm text-muted-foreground">
-            {activeProspects.length} active prospects • {converted.length} converted to clients
-          </p>
+      <Tabs defaultValue="prospects">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+          <div>
+            <h1 className="text-2xl font-heading font-bold">Prospects & Waitlists</h1>
+            <p className="text-sm text-muted-foreground">
+              {activeProspects.length} active prospects • {converted.length} converted to clients
+            </p>
+          </div>
+          <Button onClick={() => { setSelectedProspect(null); setOnboardingOpen(true); }}>
+            <Plus className="w-4 h-4 mr-2" /> New Prospect
+          </Button>
         </div>
-        <Button onClick={() => { setSelectedProspect(null); setOnboardingOpen(true); }}>
-          <Plus className="w-4 h-4 mr-2" /> New Prospect
-        </Button>
-      </div>
+
+        <TabsList className="grid grid-cols-2 w-60">
+          <TabsTrigger value="prospects">Prospects</TabsTrigger>
+          <TabsTrigger value="waitlists">Service Waitlists</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="prospects" className="space-y-4 mt-4">
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
@@ -199,12 +209,18 @@ export default function Prospects() {
         )}
       </div>
 
-      <ClientOnboardingDialog
-        open={onboardingOpen}
-        onOpenChange={setOnboardingOpen}
-        prospect={selectedProspect}
-        onComplete={handleConvertToClient}
-      />
+          <ClientOnboardingDialog
+            open={onboardingOpen}
+            onOpenChange={setOnboardingOpen}
+            prospect={selectedProspect}
+            onComplete={handleConvertToClient}
+          />
+        </TabsContent>
+
+        <TabsContent value="waitlists" className="mt-4">
+          <WaitlistManager />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

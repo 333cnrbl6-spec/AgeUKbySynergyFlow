@@ -1,0 +1,80 @@
+{
+  "name": "Waitlist",
+  "type": "object",
+  "properties": {
+    "service_name": {
+      "type": "string",
+      "description": "Name of the service/activity with waitlist"
+    },
+    "prospect_id": {
+      "type": "string",
+      "description": "Reference to prospect"
+    },
+    "prospect_name": {
+      "type": "string",
+      "description": "Prospect full name"
+    },
+    "prospect_phone": {
+      "type": "string"
+    },
+    "prospect_email": {
+      "type": "string"
+    },
+    "prospect_town": {
+      "type": "string",
+      "enum": [
+        "Bury",
+        "Ramsbottom",
+        "Tottington",
+        "Prestwich",
+        "Radcliffe",
+        "Whitefield"
+      ]
+    },
+    "date_added": {
+      "type": "string",
+      "format": "date",
+      "description": "When prospect joined waitlist"
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "routine",
+        "soon",
+        "urgent"
+      ],
+      "default": "routine",
+      "description": "Priority level"
+    },
+    "reason_for_interest": {
+      "type": "string",
+      "description": "Why prospect is interested in this service"
+    },
+    "position": {
+      "type": "number",
+      "description": "Current position in waitlist (auto-calculated)"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "converted_to_client_id": {
+      "type": "string",
+      "description": "Link to Client record if converted"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "waiting",
+        "contacted",
+        "converted",
+        "declined",
+        "withdrawn"
+      ],
+      "default": "waiting"
+    }
+  },
+  "required": [
+    "service_name",
+    "prospect_name"
+  ]
+}
