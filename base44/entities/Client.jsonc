@@ -1,0 +1,70 @@
+{
+  "name": "Client",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "description": "Client's first name"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Client's last name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Primary phone number"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "address_line_1": {
+      "type": "string",
+      "description": "Street address"
+    },
+    "address_line_2": {
+      "type": "string"
+    },
+    "town": {
+      "type": "string",
+      "description": "Town/area within Bury borough"
+    },
+    "postcode": {
+      "type": "string"
+    },
+    "date_of_birth": {
+      "type": "string",
+      "format": "date"
+    },
+    "notes": {
+      "type": "string",
+      "description": "General notes about the client"
+    },
+    "referral_source": {
+      "type": "string",
+      "enum": [
+        "self_referral",
+        "gp",
+        "social_services",
+        "hospital",
+        "family_friend",
+        "age_uk_service",
+        "other"
+      ],
+      "description": "How the client found us"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "first_name",
+    "last_name",
+    "phone"
+  ]
+}

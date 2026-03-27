@@ -1,0 +1,50 @@
+{
+  "name": "StaffMember",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "handyperson",
+        "manager",
+        "volunteer"
+      ],
+      "description": "Staff role"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "dbs_checked": {
+      "type": "boolean",
+      "default": true,
+      "description": "DBS check status"
+    },
+    "dbs_expiry": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "default": "active"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "role"
+  ]
+}
