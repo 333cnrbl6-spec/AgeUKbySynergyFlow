@@ -24,6 +24,7 @@ import ImpactReporting from './pages/ImpactReporting';
 import XeroIntegration from './pages/XeroIntegration';
 import Timesheets from './pages/Timesheets';
 import Prospects from './pages/Prospects';
+import Services from './pages/Services';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -57,6 +58,7 @@ const AuthenticatedApp = () => {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/calendar" element={<JobCalendar />} />
         <Route path="/activities" element={<Activities />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/invoices" element={<Invoices />} />
         <Route path="/staff" element={<Staff />} />
         <Route path="/suppliers" element={<Suppliers />} />

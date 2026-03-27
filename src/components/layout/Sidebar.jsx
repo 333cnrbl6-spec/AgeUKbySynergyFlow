@@ -14,6 +14,7 @@ const navItems = [
   { label: "Jobs", path: "/jobs", icon: Wrench },
   { label: "Calendar", path: "/calendar", icon: Calendar },
   { label: "Activities", path: "/activities", icon: Calendar },
+  { label: "Services & Map", path: "/services", icon: Building2 },
   { label: "Invoices", path: "/invoices", icon: Receipt },
   { label: "Suppliers", path: "/suppliers", icon: Truck },
   { label: "Facilities", path: "/facilities", icon: Building2 },
