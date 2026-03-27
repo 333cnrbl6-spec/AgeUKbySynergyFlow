@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
+import VolunteerMatchingPanel from "./VolunteerMatchingPanel";
 
 const JOB_TYPES = [
   { value: "handrails", label: "Handrails" },
@@ -120,11 +121,12 @@ export default function JobFormDialog({ open, onOpenChange, job, onSave }) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="font-heading">{job ? "Edit Job" : "New Job"}</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-3 gap-4">
+          <form onSubmit={handleSubmit} className="col-span-2 space-y-4">
           {/* Client & Type */}
           <div className="grid grid-cols-2 gap-3">
             <div>
@@ -272,8 +274,21 @@ export default function JobFormDialog({ open, onOpenChange, job, onSave }) {
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
             <Button type="submit" disabled={saving}>{saving ? "Saving..." : job ? "Update Job" : "Create Job"}</Button>
           </div>
-        </form>
-      </DialogContent>
-    </Dialog>
-  );
-}
+          </form>
+
+          {/* Volunteer Matching Panel */}
+          {form.client_id && form.job_type && (
+            <div className="col-span-1">
+              <VolunteerMatchingPanel 
+                jobId={job?.id} 
+                jobType={form.job_type}
+                clientName={form.client_name}
+                clientLocation={clients.find(c => c.id === form.client_id)?.town}
+              />
+            </div>
+          )}
+          </div>
+          </DialogContent>
+          </Dialog>
+          );
+          }
