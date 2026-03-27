@@ -1,0 +1,112 @@
+{
+  "name": "ServiceRequest",
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "Reference to Client"
+    },
+    "client_name": {
+      "type": "string",
+      "description": "Client full name"
+    },
+    "client_phone": {
+      "type": "string"
+    },
+    "client_email": {
+      "type": "string"
+    },
+    "request_type": {
+      "type": "string",
+      "enum": [
+        "handyperson",
+        "foot_care",
+        "information",
+        "befriending",
+        "other"
+      ],
+      "default": "handyperson",
+      "description": "Type of service requested"
+    },
+    "job_category": {
+      "type": "string",
+      "enum": [
+        "handrails",
+        "security_locks",
+        "shelves",
+        "curtain_rails",
+        "wall_decorations",
+        "minor_plumbing",
+        "painting_decorating",
+        "light_bulbs",
+        "flat_pack",
+        "smoke_alarms",
+        "key_safes",
+        "draught_excluders",
+        "carpet_cleaning",
+        "minor_gardening",
+        "fence_painting",
+        "furniture_moving",
+        "other"
+      ],
+      "description": "Category for handyperson requests"
+    },
+    "title": {
+      "type": "string",
+      "description": "Brief description of the request"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of what is needed"
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "routine",
+        "soon",
+        "urgent"
+      ],
+      "default": "routine",
+      "description": "Urgency level"
+    },
+    "preferred_dates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "date"
+      },
+      "description": "Preferred dates for the work"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "acknowledged",
+        "in_progress",
+        "completed",
+        "declined"
+      ],
+      "default": "submitted",
+      "description": "Request status"
+    },
+    "submitted_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When the request was submitted"
+    },
+    "staff_notes": {
+      "type": "string",
+      "description": "Notes from staff"
+    },
+    "client_notes": {
+      "type": "string",
+      "description": "Additional notes from client"
+    }
+  },
+  "required": [
+    "client_id",
+    "client_name",
+    "title",
+    "request_type"
+  ]
+}

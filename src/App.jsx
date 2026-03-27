@@ -33,6 +33,7 @@ import InformationHub from './pages/InformationHub';
 import ComplimentaryServices from './pages/ComplimentaryServices';
 import HealthServices from './pages/HealthServices';
 import ClientDetails from './pages/ClientDetails';
+import ClientPortal from './pages/ClientPortal';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -59,6 +60,9 @@ const AuthenticatedApp = () => {
 
   return (
     <Routes>
+      {/* Client Portal (no layout) */}
+      <Route path="/portal" element={<ClientPortal />} />
+
       <Route element={<AppLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/clients" element={<Clients />} />
