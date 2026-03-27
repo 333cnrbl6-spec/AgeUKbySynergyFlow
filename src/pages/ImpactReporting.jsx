@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, BarChart3, Users, Wrench, Building2, TrendingUp, FileText, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ImpactReportDialog from "../components/impact/ImpactReportDialog";
+import ImpactDashboard from "../components/impact/ImpactDashboard";
 import { startOfMonth, endOfMonth, subMonths, format, parseISO } from "date-fns";
 
 export default function ImpactReporting() {
@@ -77,15 +78,26 @@ export default function ImpactReporting() {
 
   return (
     <div className="space-y-5">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-heading font-bold">Outcomes & Impact</h1>
-          <p className="text-sm text-muted-foreground">Live service stats, funder monitoring reports and AI-generated narratives</p>
-        </div>
-        <Button onClick={() => { setEditing(null); setDialog(true); }}><Plus className="w-4 h-4 mr-2" />New Report</Button>
-      </div>
+      <Tabs defaultValue="dashboard">
+        <TabsList className="grid grid-cols-2 w-80">
+          <TabsTrigger value="dashboard">Impact Dashboard</TabsTrigger>
+          <TabsTrigger value="reports">Monitoring Reports</TabsTrigger>
+        </TabsList>
 
-      {/* Period selector */}
+        <TabsContent value="dashboard" className="mt-4">
+          <ImpactDashboard />
+        </TabsContent>
+
+        <TabsContent value="reports" className="space-y-5 mt-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-heading font-bold">Monitoring Reports</h2>
+              <p className="text-sm text-muted-foreground">Create funder reports and track submissions</p>
+            </div>
+            <Button onClick={() => { setEditing(null); setDialog(true); }}><Plus className="w-4 h-4 mr-2" />New Report</Button>
+          </div>
+
+          {/* Period selector */}
       <div className="flex items-center gap-3">
         <span className="text-sm font-medium">Period:</span>
         <Select value={period} onValueChange={setPeriod}>
@@ -112,13 +124,13 @@ export default function ImpactReporting() {
         ))}
       </div>
 
-      <Tabs defaultValue="generate">
-        <TabsList className="grid grid-cols-2 w-72">
-          <TabsTrigger value="generate">AI Report Generator</TabsTrigger>
-          <TabsTrigger value="saved">Saved Reports ({reports.length})</TabsTrigger>
-        </TabsList>
+          <Tabs defaultValue="generate">
+            <TabsList className="grid grid-cols-2 w-72">
+              <TabsTrigger value="generate">AI Report Generator</TabsTrigger>
+              <TabsTrigger value="saved">Saved Reports ({reports.length})</TabsTrigger>
+            </TabsList>
 
-        <TabsContent value="generate" className="space-y-4 mt-4">
+            <TabsContent value="generate" className="space-y-4 mt-4">
           <div className="bg-card border rounded-xl p-5">
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -145,9 +157,9 @@ export default function ImpactReporting() {
               </div>
             )}
           </div>
-        </TabsContent>
+            </TabsContent>
 
-        <TabsContent value="saved" className="space-y-3 mt-4">
+            <TabsContent value="saved" className="space-y-3 mt-4">
           {reports.length === 0 && <p className="text-center text-muted-foreground py-10 text-sm">No reports saved yet. Generate one above.</p>}
           {reports.map(r => (
             <div key={r.id} className="bg-card border rounded-xl p-4 hover:shadow-sm cursor-pointer" onClick={() => { setEditing(r); setDialog(true); }}>
@@ -168,11 +180,13 @@ export default function ImpactReporting() {
               </div>
             </div>
           ))}
-        </TabsContent>
-      </Tabs>
+          </TabsContent>
+          </Tabs>
+          </TabsContent>
+          </Tabs>
 
-      <ImpactReportDialog open={dialog} onOpenChange={setDialog} report={editing}
-        onSave={async r => { await save.mutateAsync(r); setEditing(null); }} />
-    </div>
-  );
-}
+          <ImpactReportDialog open={dialog} onOpenChange={setDialog} report={editing}
+          onSave={async r => { await save.mutateAsync(r); setEditing(null); }} />
+          </div>
+          );
+          }
