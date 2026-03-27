@@ -13,6 +13,7 @@ import Jobs from './pages/Jobs';
 import JobCalendar from './pages/JobCalendar';
 import Invoices from './pages/Invoices';
 import Staff from './pages/Staff';
+import Suppliers from './pages/Suppliers';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -46,6 +47,7 @@ const AuthenticatedApp = () => {
         <Route path="/calendar" element={<JobCalendar />} />
         <Route path="/invoices" element={<Invoices />} />
         <Route path="/staff" element={<Staff />} />
+        <Route path="/suppliers" element={<Suppliers />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

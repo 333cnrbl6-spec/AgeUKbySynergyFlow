@@ -1,0 +1,117 @@
+{
+  "name": "Supplier",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "description": "Company or trading name"
+    },
+    "contact_name": {
+      "type": "string",
+      "description": "Primary contact person"
+    },
+    "supplier_type": {
+      "type": "string",
+      "enum": [
+        "subcontractor",
+        "direct_referral",
+        "materials_supplier",
+        "specialist_contractor",
+        "other"
+      ],
+      "description": "Type of supplier"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Skills/trades offered"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "mobile": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "address_line_1": {
+      "type": "string"
+    },
+    "address_line_2": {
+      "type": "string"
+    },
+    "town": {
+      "type": "string"
+    },
+    "county": {
+      "type": "string"
+    },
+    "postcode": {
+      "type": "string"
+    },
+    "bank_name": {
+      "type": "string"
+    },
+    "bank_account_name": {
+      "type": "string"
+    },
+    "bank_sort_code": {
+      "type": "string"
+    },
+    "bank_account_number": {
+      "type": "string"
+    },
+    "vat_registered": {
+      "type": "boolean",
+      "default": false
+    },
+    "vat_number": {
+      "type": "string"
+    },
+    "company_number": {
+      "type": "string"
+    },
+    "insurance_expiry": {
+      "type": "string",
+      "format": "date"
+    },
+    "gas_safe_number": {
+      "type": "string"
+    },
+    "gas_safe_expiry": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "suspended"
+      ],
+      "default": "active"
+    },
+    "preferred": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "string"
+    },
+    "current_balance": {
+      "type": "number",
+      "default": 0,
+      "description": "Outstanding balance owed to supplier"
+    }
+  },
+  "required": [
+    "company_name",
+    "supplier_type"
+  ]
+}

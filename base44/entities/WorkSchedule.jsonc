@@ -1,0 +1,65 @@
+{
+  "name": "WorkSchedule",
+  "type": "object",
+  "properties": {
+    "supplier_id": {
+      "type": "string"
+    },
+    "supplier_name": {
+      "type": "string"
+    },
+    "job_id": {
+      "type": "string"
+    },
+    "job_title": {
+      "type": "string"
+    },
+    "client_name": {
+      "type": "string"
+    },
+    "client_address": {
+      "type": "string"
+    },
+    "po_id": {
+      "type": "string"
+    },
+    "po_number": {
+      "type": "string"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "scheduled_time": {
+      "type": "string"
+    },
+    "estimated_hours": {
+      "type": "number"
+    },
+    "actual_hours": {
+      "type": "number"
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "in_progress",
+        "completed",
+        "cancelled",
+        "rescheduled"
+      ],
+      "default": "confirmed"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "supplier_id",
+    "supplier_name",
+    "scheduled_date"
+  ]
+}

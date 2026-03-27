@@ -1,0 +1,127 @@
+{
+  "name": "PurchaseOrder",
+  "type": "object",
+  "properties": {
+    "po_number": {
+      "type": "string",
+      "description": "Purchase order reference number"
+    },
+    "supplier_id": {
+      "type": "string"
+    },
+    "supplier_name": {
+      "type": "string"
+    },
+    "job_id": {
+      "type": "string",
+      "description": "Related job (optional)"
+    },
+    "job_title": {
+      "type": "string"
+    },
+    "client_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "description": "Work or goods description"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "sent",
+        "acknowledged",
+        "in_progress",
+        "completed",
+        "invoiced",
+        "paid",
+        "cancelled"
+      ],
+      "default": "draft"
+    },
+    "issue_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "required_by": {
+      "type": "string",
+      "format": "date"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unit_price": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "net_amount": {
+      "type": "number",
+      "default": 0
+    },
+    "vat_amount": {
+      "type": "number",
+      "default": 0
+    },
+    "total_amount": {
+      "type": "number",
+      "default": 0
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "unpaid",
+        "partial",
+        "paid"
+      ],
+      "default": "unpaid"
+    },
+    "payment_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "bacs",
+        "cheque",
+        "cash",
+        "card"
+      ],
+      "default": "bacs"
+    },
+    "amount_paid": {
+      "type": "number",
+      "default": 0
+    },
+    "invoice_reference": {
+      "type": "string",
+      "description": "Supplier's invoice number"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "supplier_id",
+    "supplier_name",
+    "description"
+  ]
+}
