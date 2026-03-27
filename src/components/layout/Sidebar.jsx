@@ -16,6 +16,7 @@ const navItems = [
   { label: "Activities", path: "/activities", icon: Calendar },
   { label: "Services & Map", path: "/services", icon: Building2 },
   { label: "Data Partnerships", path: "/partnerships", icon: Network },
+  { label: "Analytics", path: "/analytics", icon: BarChart3 },
   { label: "Invoices", path: "/invoices", icon: Receipt },
   { label: "Suppliers", path: "/suppliers", icon: Truck },
   { label: "Facilities", path: "/facilities", icon: Building2 },
