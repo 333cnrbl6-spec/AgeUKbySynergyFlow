@@ -31,6 +31,7 @@ import MapDashboard from './pages/MapDashboard';
 import ImpactStories from './pages/ImpactStories';
 import InformationHub from './pages/InformationHub';
 import ComplimentaryServices from './pages/ComplimentaryServices';
+import HealthServices from './pages/HealthServices';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -82,6 +83,7 @@ const AuthenticatedApp = () => {
         <Route path="/impact" element={<ImpactStories />} />
         <Route path="/information" element={<InformationHub />} />
         <Route path="/services" element={<ComplimentaryServices />} />
+        <Route path="/health" element={<HealthServices />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

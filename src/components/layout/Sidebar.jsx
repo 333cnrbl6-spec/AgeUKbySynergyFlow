@@ -4,7 +4,7 @@ import {
   LayoutDashboard, Users, Wrench, Calendar, Receipt, 
   UserCog, Menu, X, ChevronRight, Heart, Truck, Building2,
   PoundSterling, PhoneIncoming, Handshake, Shield, BarChart3, Link2, Clock, Network, MapPin,
-  Award, Book, Share2
+  Award, Book, Share2, Stethoscope
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -22,6 +22,7 @@ const navItems = [
   { label: "Impact Stories", path: "/impact", icon: Award },
   { label: "Information Hub", path: "/information", icon: Book },
   { label: "Partner Services", path: "/services", icon: Share2 },
+  { label: "Health Services", path: "/health", icon: Stethoscope },
   { label: "Invoices", path: "/invoices", icon: Receipt },
   { label: "Suppliers", path: "/suppliers", icon: Truck },
   { label: "Facilities", path: "/facilities", icon: Building2 },
