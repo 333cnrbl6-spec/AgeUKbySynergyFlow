@@ -1,0 +1,139 @@
+{
+  "name": "Referral",
+  "type": "object",
+  "properties": {
+    "ref_number": {
+      "type": "string"
+    },
+    "referral_source_type": {
+      "type": "string",
+      "enum": [
+        "gp_social_prescribing",
+        "bury_council_asc",
+        "hospital_discharge",
+        "self_referral",
+        "family_carer",
+        "nhs_community",
+        "another_charity",
+        "other"
+      ],
+      "description": "Who referred this person"
+    },
+    "referring_organisation": {
+      "type": "string",
+      "description": "e.g. Bury GP Federation, Fairfield Hospital"
+    },
+    "referring_person_name": {
+      "type": "string"
+    },
+    "referring_person_email": {
+      "type": "string"
+    },
+    "referring_person_phone": {
+      "type": "string"
+    },
+    "client_id": {
+      "type": "string",
+      "description": "Link to existing client record if created"
+    },
+    "client_first_name": {
+      "type": "string"
+    },
+    "client_last_name": {
+      "type": "string"
+    },
+    "client_dob": {
+      "type": "string",
+      "format": "date"
+    },
+    "client_phone": {
+      "type": "string"
+    },
+    "client_address": {
+      "type": "string"
+    },
+    "client_postcode": {
+      "type": "string"
+    },
+    "client_email": {
+      "type": "string"
+    },
+    "reason_for_referral": {
+      "type": "string",
+      "description": "Why they are being referred"
+    },
+    "presenting_needs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "e.g. loneliness, housing, benefits, mobility"
+    },
+    "services_requested": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Which Age UK Bury services are needed"
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "routine",
+        "soon",
+        "urgent"
+      ],
+      "default": "routine"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "received",
+        "contacted",
+        "assessment_booked",
+        "active",
+        "declined",
+        "signposted_elsewhere",
+        "closed"
+      ],
+      "default": "received"
+    },
+    "received_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "contacted_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "assigned_to": {
+      "type": "string"
+    },
+    "outcome": {
+      "type": "string"
+    },
+    "consent_given": {
+      "type": "boolean",
+      "default": false
+    },
+    "consent_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "safeguarding_concern": {
+      "type": "boolean",
+      "default": false
+    },
+    "safeguarding_notes": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "referral_source_type",
+    "client_first_name",
+    "client_last_name"
+  ]
+}

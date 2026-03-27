@@ -1,0 +1,117 @@
+{
+  "name": "Partner",
+  "type": "object",
+  "properties": {
+    "organisation_name": {
+      "type": "string"
+    },
+    "partner_type": {
+      "type": "string",
+      "enum": [
+        "bury_council",
+        "nhs_icb",
+        "gp_federation",
+        "hospital",
+        "age_uk_national",
+        "age_uk_gm",
+        "housing",
+        "police_fire",
+        "voluntary_sector",
+        "corporate_sponsor",
+        "faith_group",
+        "other"
+      ]
+    },
+    "relationship_type": {
+      "type": "string",
+      "enum": [
+        "commissioner",
+        "funder",
+        "referral_partner",
+        "delivery_partner",
+        "peer_network",
+        "landlord",
+        "other"
+      ]
+    },
+    "primary_contact_name": {
+      "type": "string"
+    },
+    "primary_contact_role": {
+      "type": "string"
+    },
+    "primary_contact_email": {
+      "type": "string"
+    },
+    "primary_contact_phone": {
+      "type": "string"
+    },
+    "secondary_contact_name": {
+      "type": "string"
+    },
+    "secondary_contact_email": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "contract_reference": {
+      "type": "string"
+    },
+    "contract_start": {
+      "type": "string",
+      "format": "date"
+    },
+    "contract_end": {
+      "type": "string",
+      "format": "date"
+    },
+    "contract_value": {
+      "type": "number"
+    },
+    "next_meeting_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "meeting_frequency": {
+      "type": "string",
+      "enum": [
+        "weekly",
+        "monthly",
+        "quarterly",
+        "biannual",
+        "annual",
+        "ad_hoc"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "prospective"
+      ],
+      "default": "active"
+    },
+    "services_linked": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "last_contact_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "organisation_name",
+    "partner_type"
+  ]
+}

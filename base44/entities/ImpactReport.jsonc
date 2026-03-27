@@ -1,0 +1,72 @@
+{
+  "name": "ImpactReport",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "report_type": {
+      "type": "string",
+      "enum": [
+        "grant_monitoring",
+        "board_report",
+        "council_contract",
+        "annual_report",
+        "nhs_return",
+        "ad_hoc"
+      ]
+    },
+    "period_from": {
+      "type": "string",
+      "format": "date"
+    },
+    "period_to": {
+      "type": "string",
+      "format": "date"
+    },
+    "funder_partner": {
+      "type": "string"
+    },
+    "grant_id": {
+      "type": "string"
+    },
+    "partner_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "submitted",
+        "accepted",
+        "queried"
+      ],
+      "default": "draft"
+    },
+    "submitted_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "headline_stats": {
+      "type": "string",
+      "description": "Auto or manually entered key stats summary"
+    },
+    "narrative": {
+      "type": "string",
+      "description": "Qualitative report narrative"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "report_type",
+    "period_from",
+    "period_to"
+  ]
+}

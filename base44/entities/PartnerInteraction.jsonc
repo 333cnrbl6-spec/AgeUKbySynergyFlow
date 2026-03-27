@@ -1,0 +1,52 @@
+{
+  "name": "PartnerInteraction",
+  "type": "object",
+  "properties": {
+    "partner_id": {
+      "type": "string"
+    },
+    "partner_name": {
+      "type": "string"
+    },
+    "interaction_type": {
+      "type": "string",
+      "enum": [
+        "meeting",
+        "phone_call",
+        "email",
+        "report_submitted",
+        "contract_review",
+        "site_visit",
+        "event",
+        "other"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "attendees": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "actions": {
+      "type": "string",
+      "description": "Action points arising"
+    },
+    "next_steps": {
+      "type": "string"
+    },
+    "follow_up_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "partner_id",
+    "partner_name",
+    "interaction_type",
+    "date"
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "name": "Grant",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Grant name / title"
+    },
+    "funder_name": {
+      "type": "string",
+      "description": "Name of the funding organisation"
+    },
+    "funder_type": {
+      "type": "string",
+      "enum": [
+        "bury_council",
+        "national_lottery",
+        "lloyds_foundation",
+        "nhs",
+        "age_uk_national",
+        "trust_foundation",
+        "corporate",
+        "other"
+      ],
+      "description": "Type of funder"
+    },
+    "funder_contact_name": {
+      "type": "string"
+    },
+    "funder_contact_email": {
+      "type": "string"
+    },
+    "funder_contact_phone": {
+      "type": "string"
+    },
+    "service_area": {
+      "type": "string",
+      "enum": [
+        "handyperson",
+        "befriending",
+        "home_from_hospital",
+        "information_advice",
+        "jubilee_centre",
+        "dumers_lane",
+        "friends_together",
+        "social_prescribing",
+        "general",
+        "other"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planning",
+        "applied",
+        "under_review",
+        "awarded",
+        "declined",
+        "withdrawn",
+        "closed"
+      ],
+      "default": "planning"
+    },
+    "amount_applied": {
+      "type": "number",
+      "default": 0
+    },
+    "amount_awarded": {
+      "type": "number",
+      "default": 0
+    },
+    "application_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "decision_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "next_report_due": {
+      "type": "string",
+      "format": "date"
+    },
+    "report_frequency": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "quarterly",
+        "biannual",
+        "annual",
+        "end_of_grant",
+        "none"
+      ],
+      "default": "quarterly"
+    },
+    "kpi_targets": {
+      "type": "string",
+      "description": "Key performance indicators required by funder"
+    },
+    "kpi_actuals": {
+      "type": "string",
+      "description": "Current actual performance against KPIs"
+    },
+    "conditions": {
+      "type": "string",
+      "description": "Grant conditions or restrictions"
+    },
+    "description": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "amount_spent": {
+      "type": "number",
+      "default": 0
+    },
+    "restricted": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this restricted funding?"
+    }
+  },
+  "required": [
+    "title",
+    "funder_name",
+    "funder_type"
+  ]
+}

@@ -15,6 +15,11 @@ import Invoices from './pages/Invoices';
 import Staff from './pages/Staff';
 import Suppliers from './pages/Suppliers';
 import Facilities from './pages/Facilities';
+import Grants from './pages/Grants';
+import Referrals from './pages/Referrals';
+import Partners from './pages/Partners';
+import Compliance from './pages/Compliance';
+import ImpactReporting from './pages/ImpactReporting';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -50,6 +55,11 @@ const AuthenticatedApp = () => {
         <Route path="/staff" element={<Staff />} />
         <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/facilities" element={<Facilities />} />
+        <Route path="/grants" element={<Grants />} />
+        <Route path="/referrals" element={<Referrals />} />
+        <Route path="/partners" element={<Partners />} />
+        <Route path="/compliance" element={<Compliance />} />
+        <Route path="/impact" element={<ImpactReporting />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
