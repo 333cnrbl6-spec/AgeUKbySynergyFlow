@@ -65,6 +65,89 @@
       "type": "boolean",
       "default": false,
       "description": "Has dementia or dementia-related support needs"
+    },
+    "isolation_level": {
+      "type": "string",
+      "enum": [
+        "not_isolated",
+        "at_risk",
+        "isolated",
+        "unknown"
+      ],
+      "default": "unknown",
+      "description": "Assessment of social isolation risk"
+    },
+    "support_needs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Identified support needs (e.g., handyperson, befriending, day centre)"
+    },
+    "referral_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique referral ID"
+          },
+          "service_type": {
+            "type": "string",
+            "enum": [
+              "befriending",
+              "day_centre",
+              "activities",
+              "home_help",
+              "foot_care",
+              "it_training",
+              "health_referral",
+              "other"
+            ],
+            "description": "Type of service referred to"
+          },
+          "trigger_event": {
+            "type": "string",
+            "description": "What triggered the referral (e.g., 'Job completed for isolated client')"
+          },
+          "referred_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date referral was made"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "accepted",
+              "in_progress",
+              "completed",
+              "declined",
+              "withdrawn"
+            ],
+            "default": "pending",
+            "description": "Referral status"
+          },
+          "referred_by": {
+            "type": "string",
+            "description": "Staff member or system that made referral"
+          },
+          "outcome": {
+            "type": "string",
+            "description": "Outcome of referral"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional notes"
+          }
+        },
+        "required": [
+          "service_type",
+          "referred_date"
+        ]
+      },
+      "description": "History of referrals made for this client"
     }
   },
   "required": [

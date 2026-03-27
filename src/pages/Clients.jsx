@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Search, Phone, Mail, MapPin, Pencil } from "lucide-react";
+import { Plus, Search, Phone, Mail, MapPin, Pencil, ChevronRight } from "lucide-react";
 import ClientFormDialog from "../components/clients/ClientFormDialog";
 import ClientOnboardingDialog from "../components/clients/ClientOnboardingDialog";
 
 export default function Clients() {
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
@@ -79,22 +81,16 @@ export default function Clients() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map(client => (
-            <div key={client.id} className="bg-card rounded-xl p-5 border border-border/50 shadow-sm hover:shadow-md transition-shadow group">
+           {filtered.map(client => (
+            <div key={client.id} className="bg-card rounded-xl p-5 border border-border/50 shadow-sm hover:shadow-md transition-shadow group cursor-pointer" onClick={() => navigate(`/clients/${client.id}`)}>
               <div className="flex items-start justify-between">
-                <div>
+                <div className="flex-1">
                   <h3 className="font-heading font-semibold">{client.first_name} {client.last_name}</h3>
                   <Badge variant="outline" className="text-xs mt-1">
                     {client.status === "active" ? "Active" : "Inactive"}
                   </Badge>
                 </div>
-                <Button 
-                  variant="ghost" size="icon"
-                  className="opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => { setEditingClient(client); setDialogOpen(true); }}
-                >
-                  <Pencil className="w-4 h-4" />
-                </Button>
+                <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
               </div>
               <div className="mt-3 space-y-1.5 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">

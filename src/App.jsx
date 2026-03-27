@@ -32,6 +32,7 @@ import ImpactStories from './pages/ImpactStories';
 import InformationHub from './pages/InformationHub';
 import ComplimentaryServices from './pages/ComplimentaryServices';
 import HealthServices from './pages/HealthServices';
+import ClientDetails from './pages/ClientDetails';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -61,6 +62,7 @@ const AuthenticatedApp = () => {
       <Route element={<AppLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/clients" element={<Clients />} />
+        <Route path="/clients/:clientId" element={<ClientDetails />} />
         <Route path="/prospects" element={<Prospects />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/calendar" element={<JobCalendar />} />
