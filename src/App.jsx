@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard.jsx';
 import Clients from './pages/Clients';
 import Jobs from './pages/Jobs';
 import JobCalendar from './pages/JobCalendar';
+import Activities from './pages/Activities';
 import Invoices from './pages/Invoices';
 import Staff from './pages/Staff';
 import Suppliers from './pages/Suppliers';
@@ -53,6 +54,7 @@ const AuthenticatedApp = () => {
         <Route path="/clients" element={<Clients />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/calendar" element={<JobCalendar />} />
+        <Route path="/activities" element={<Activities />} />
         <Route path="/invoices" element={<Invoices />} />
         <Route path="/staff" element={<Staff />} />
         <Route path="/suppliers" element={<Suppliers />} />
