@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Search, Star, Gift, MapPin, Package } from 'lucide-react';
+import { Search, Gift, MapPin, Package, TriangleAlert } from 'lucide-react';
 import { CREDIT_BANDS, CATEGORY_LABELS, CONDITION_LABELS } from './exchangeConstants';
 
 export default function ExchangeStorefront({ user }) {
@@ -77,6 +77,17 @@ export default function ExchangeStorefront({ user }) {
 
   return (
     <div className="space-y-5">
+      {/* Disclaimer Banner */}
+      <div className="bg-amber-50 border border-amber-300 rounded-lg p-4 flex gap-3">
+        <TriangleAlert className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+        <div className="text-sm text-amber-900 space-y-1">
+          <p className="font-semibold">Important — Please Read Before Requesting Items</p>
+          <p>This exchange is a <strong>community-run initiative</strong> and is not operated or endorsed by Age UK Bury. Items are donated by members of the community and are offered in good faith.</p>
+          <p>Before requesting any <strong>mobility or daily living equipment</strong> (e.g. walking aids, bath seats, grab rails), please ensure that a qualified professional — such as an <strong>Occupational Therapist, Physiotherapist, or GP</strong> — has assessed your needs and agreed that the item is suitable for you. Using the wrong equipment without professional advice can be unsafe.</p>
+          <p>Age UK Bury accepts no responsibility for the condition, suitability, or use of any items exchanged through this service.</p>
+        </div>
+      </div>
+
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
@@ -189,7 +200,12 @@ export default function ExchangeStorefront({ user }) {
                   )}
                 </div>
               )}
-              <p className="text-xs text-muted-foreground">Staff will confirm collection or delivery with you shortly.</p>
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-900 space-y-1">
+                <p className="font-semibold">⚠️ Please confirm before proceeding:</p>
+                <p>By requesting this item you confirm that, where applicable, a qualified professional (such as an Occupational Therapist, Physiotherapist, or GP) has agreed that this equipment is appropriate for your needs.</p>
+                <p>This exchange is community-run and not operated by Age UK Bury. Items are offered as-is with no warranty.</p>
+              </div>
+              <p className="text-xs text-muted-foreground">A member of the Age UK Bury team will be in touch to arrange collection or delivery.</p>
               <div className="flex justify-end gap-2">
                 <Button variant="outline" onClick={() => setClaimItem(null)}>Cancel</Button>
                 <Button

@@ -28,6 +28,9 @@ export default function CommunityExchange() {
           <p className="text-white/80 text-lg max-w-2xl">
             Share what you no longer need. Find what might help you. Powered by <strong>Kind Credits</strong> — our community currency where generosity is rewarded.
           </p>
+          <p className="text-white/60 text-sm max-w-2xl mt-2">
+            This is a community-run exchange and is not operated by Age UK Bury. Please seek professional advice before using any mobility or daily living equipment.
+          </p>
         </div>
       </div>
 
