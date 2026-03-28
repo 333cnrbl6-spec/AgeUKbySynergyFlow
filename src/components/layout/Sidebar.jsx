@@ -4,33 +4,34 @@ import {
   LayoutDashboard, Users, Wrench, Calendar, Receipt, 
   UserCog, Menu, X, ChevronRight, Heart, Truck, Building2,
   PoundSterling, PhoneIncoming, Handshake, Shield, BarChart3, Link2, Clock, Network, MapPin,
-  Award, Book, Share2, Stethoscope
+  Award, Book, Share2, Stethoscope, ClipboardList, LogOut
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/AuthContext";
+import { getNavItemsForRole, ROLE_LABELS } from "@/lib/rolePermissions";
 
-const navItems = [
+const ALL_NAV_ITEMS = [
   { label: "Dashboard", path: "/", icon: LayoutDashboard },
+  { label: "Session Register", path: "/session-list", icon: ClipboardList },
   { label: "Clients", path: "/clients", icon: Users },
   { label: "Prospects", path: "/prospects", icon: Users },
   { label: "Jobs", path: "/jobs", icon: Wrench },
   { label: "Calendar", path: "/calendar", icon: Calendar },
   { label: "Activities", path: "/activities", icon: Calendar },
-  { label: "Services & Map", path: "/services", icon: Building2 },
-  { label: "Data Partnerships", path: "/partnerships", icon: Network },
-  { label: "Analytics", path: "/analytics", icon: BarChart3 },
-  { label: "Service Map", path: "/map", icon: MapPin },
-  { label: "Impact Stories", path: "/impact", icon: Award },
+  { label: "Referrals", path: "/referrals", icon: PhoneIncoming },
   { label: "Information Hub", path: "/information", icon: Book },
-  { label: "Partner Services", path: "/services", icon: Share2 },
   { label: "Health Services", path: "/health", icon: Stethoscope },
+  { label: "Services & Map", path: "/services", icon: Building2 },
+  { label: "Service Map", path: "/map", icon: MapPin },
+  { label: "Facilities", path: "/facilities", icon: Building2 },
   { label: "Invoices", path: "/invoices", icon: Receipt },
   { label: "Suppliers", path: "/suppliers", icon: Truck },
-  { label: "Facilities", path: "/facilities", icon: Building2 },
-  { label: "Referrals", path: "/referrals", icon: PhoneIncoming },
   { label: "Grants & Funding", path: "/grants", icon: PoundSterling },
   { label: "Partners", path: "/partners", icon: Handshake },
+  { label: "Data Partnerships", path: "/partnerships", icon: Network },
   { label: "Compliance", path: "/compliance", icon: Shield },
-  { label: "Impact & Reports", path: "/impact", icon: BarChart3 },
+  { label: "Impact & Reports", path: "/impact", icon: Award },
+  { label: "Analytics", path: "/analytics", icon: BarChart3 },
   { label: "Timesheets", path: "/timesheets", icon: Clock },
   { label: "Staff", path: "/staff", icon: UserCog },
   { label: "Staff Calendar", path: "/staff-calendar", icon: Calendar },
@@ -39,8 +40,12 @@ const navItems = [
 
 export default function Sidebar() {
   const location = useLocation();
+  const { user, logout } = useAuth();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navItems = getNavItemsForRole(user?.role, ALL_NAV_ITEMS);
+  const roleLabel = ROLE_LABELS[user?.role] || user?.role || 'Staff';
 
   const isActive = (path) => {
     if (path === "/") return location.pathname === "/";
@@ -58,7 +63,7 @@ export default function Sidebar() {
           {!collapsed && (
             <div className="overflow-hidden">
               <h1 className="font-heading font-bold text-white text-sm leading-tight">Age UK Bury</h1>
-              <p className="text-xs text-white/60 leading-tight">Handyperson Service</p>
+              <p className="text-xs text-white/60 leading-tight">Management System</p>
             </div>
           )}
         </div>
@@ -71,7 +76,7 @@ export default function Sidebar() {
           const active = isActive(item.path);
           return (
             <Link
-              key={item.path}
+              key={item.label}
               to={item.path}
               onClick={() => setMobileOpen(false)}
               className={cn(
@@ -99,15 +104,28 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* Footer */}
-      {!collapsed && (
-        <div className="p-4 border-t border-sidebar-border flex-shrink-0">
-          <div className="text-xs text-white/40 leading-relaxed">
-            <p className="font-medium text-white/60">Sue Bradley</p>
-            <p>Admin Office · 0161 796 6949</p>
+      {/* User Footer */}
+      <div className="p-4 border-t border-sidebar-border flex-shrink-0">
+        {!collapsed ? (
+          <div className="space-y-2">
+            <div className="text-xs text-white/40 leading-relaxed">
+              <p className="font-medium text-white/80">{user?.full_name || 'Staff Member'}</p>
+              <p className="text-white/50">{roleLabel}</p>
+            </div>
+            <button
+              onClick={() => logout()}
+              className="flex items-center gap-2 text-xs text-white/40 hover:text-white/70 transition-colors"
+            >
+              <LogOut className="w-3 h-3" />
+              Sign out
+            </button>
           </div>
-        </div>
-      )}
+        ) : (
+          <button onClick={() => logout()} className="text-white/40 hover:text-white/70 transition-colors">
+            <LogOut className="w-4 h-4" />
+          </button>
+        )}
+      </div>
     </div>
   );
 

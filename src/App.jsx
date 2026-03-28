@@ -35,6 +35,7 @@ import HealthServices from './pages/HealthServices';
 import ClientDetails from './pages/ClientDetails';
 import ClientPortal from './pages/ClientPortal';
 import StaffCalendar from './pages/StaffCalendar';
+import SessionList from './pages/SessionList';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -92,6 +93,7 @@ const AuthenticatedApp = () => {
         <Route path="/services" element={<ComplimentaryServices />} />
         <Route path="/health" element={<HealthServices />} />
         <Route path="/staff-calendar" element={<StaffCalendar />} />
+        <Route path="/session-list" element={<SessionList />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

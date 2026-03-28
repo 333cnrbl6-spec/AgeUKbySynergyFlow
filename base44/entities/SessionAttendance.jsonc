@@ -1,0 +1,103 @@
+{
+  "name": "SessionAttendance",
+  "type": "object",
+  "properties": {
+    "activity_name": {
+      "type": "string",
+      "description": "Name of the activity/session"
+    },
+    "session_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the session"
+    },
+    "session_start_time": {
+      "type": "string",
+      "description": "Start time e.g. 10:00"
+    },
+    "session_end_time": {
+      "type": "string",
+      "description": "End time e.g. 12:00"
+    },
+    "facility_name": {
+      "type": "string",
+      "description": "Where the session took place"
+    },
+    "volunteer_name": {
+      "type": "string",
+      "description": "Name of the volunteer running the session"
+    },
+    "volunteer_id": {
+      "type": "string",
+      "description": "User ID of the volunteer"
+    },
+    "attendees": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "client_id": {
+            "type": "string"
+          },
+          "client_name": {
+            "type": "string"
+          },
+          "attendance_status": {
+            "type": "string",
+            "enum": [
+              "attended",
+              "no_show",
+              "cancelled",
+              "late"
+            ],
+            "default": "attended"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "List of clients and their attendance status"
+    },
+    "total_expected": {
+      "type": "number",
+      "description": "Number of clients expected"
+    },
+    "total_attended": {
+      "type": "number",
+      "description": "Number of clients who attended"
+    },
+    "session_notes": {
+      "type": "string",
+      "description": "General notes about the session"
+    },
+    "session_theme": {
+      "type": "string",
+      "description": "Topic or theme for the session (optional)"
+    },
+    "incidents": {
+      "type": "string",
+      "description": "Any incidents or safeguarding concerns to note"
+    },
+    "weather_impact": {
+      "type": "boolean",
+      "default": false,
+      "description": "Was attendance affected by weather?"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ],
+      "default": "planned"
+    }
+  },
+  "required": [
+    "activity_name",
+    "session_date",
+    "volunteer_name"
+  ]
+}

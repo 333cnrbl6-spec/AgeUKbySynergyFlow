@@ -1,0 +1,47 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "manager",
+        "handyperson",
+        "activity_volunteer",
+        "befriending_coordinator",
+        "information_officer",
+        "facilities_coordinator",
+        "finance_officer"
+      ],
+      "default": "handyperson",
+      "description": "User role within Age UK Bury"
+    },
+    "assigned_activities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Activity names this volunteer is responsible for (used for volunteers)"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Preferred display name"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string",
+      "enum": [
+        "handyperson_service",
+        "day_centre",
+        "befriending",
+        "information_advice",
+        "facilities",
+        "finance",
+        "management"
+      ]
+    }
+  }
+}
