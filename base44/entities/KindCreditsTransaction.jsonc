@@ -1,0 +1,53 @@
+{
+  "name": "KindCreditsTransaction",
+  "type": "object",
+  "properties": {
+    "wallet_id": {
+      "type": "string"
+    },
+    "client_id": {
+      "type": "string"
+    },
+    "client_name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "earned_listing",
+        "earned_bonus",
+        "spent_claim",
+        "spent_reserve",
+        "refunded",
+        "admin_adjustment"
+      ],
+      "description": "Transaction type"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Positive = earned, negative = spent"
+    },
+    "balance_after": {
+      "type": "number"
+    },
+    "description": {
+      "type": "string"
+    },
+    "item_id": {
+      "type": "string"
+    },
+    "item_title": {
+      "type": "string"
+    },
+    "performed_by": {
+      "type": "string",
+      "description": "Staff name if admin action"
+    }
+  },
+  "required": [
+    "client_id",
+    "client_name",
+    "type",
+    "amount"
+  ]
+}

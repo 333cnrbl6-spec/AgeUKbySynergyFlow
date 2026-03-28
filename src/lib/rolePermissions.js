@@ -33,25 +33,25 @@ const ROLE_PERMISSIONS = {
     '/services', '/analytics', '/map', '/referrals', '/partners',
     '/grants', '/compliance', '/impact', '/staff', '/staff-calendar',
     '/timesheets', '/facilities', '/invoices', '/information', '/health',
-    '/session-list', '/xero', '/partnerships',
+    '/session-list', '/xero', '/partnerships', '/exchange',
   ],
   handyperson: [
-    '/', '/jobs', '/calendar', '/clients', '/timesheets', '/referrals',
+    '/', '/jobs', '/calendar', '/clients', '/timesheets', '/referrals', '/exchange',
   ],
   activity_volunteer: [
-    '/', '/session-list', '/activities', '/clients',
+    '/', '/session-list', '/activities', '/clients', '/exchange',
   ],
   befriending_coordinator: [
-    '/', '/clients', '/referrals', '/activities', '/session-list', '/information',
+    '/', '/clients', '/referrals', '/activities', '/session-list', '/information', '/exchange',
   ],
   information_officer: [
-    '/', '/clients', '/referrals', '/information', '/health', '/services',
+    '/', '/clients', '/referrals', '/information', '/health', '/services', '/exchange',
   ],
   facilities_coordinator: [
-    '/', '/facilities', '/calendar', '/staff-calendar', '/activities',
+    '/', '/facilities', '/calendar', '/staff-calendar', '/activities', '/exchange',
   ],
   finance_officer: [
-    '/', '/invoices', '/grants', '/xero', '/suppliers', '/timesheets',
+    '/', '/invoices', '/grants', '/xero', '/suppliers', '/timesheets', '/exchange',
   ],
 };
 

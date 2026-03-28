@@ -1,0 +1,37 @@
+{
+  "name": "KindCreditsWallet",
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string"
+    },
+    "client_name": {
+      "type": "string"
+    },
+    "balance": {
+      "type": "number",
+      "default": 10,
+      "description": "Current Kind Credits balance"
+    },
+    "total_earned": {
+      "type": "number",
+      "default": 10
+    },
+    "total_spent": {
+      "type": "number",
+      "default": 0
+    },
+    "hardship_access": {
+      "type": "boolean",
+      "default": false,
+      "description": "Staff override \u2014 can claim any item for free"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "client_id",
+    "client_name"
+  ]
+}

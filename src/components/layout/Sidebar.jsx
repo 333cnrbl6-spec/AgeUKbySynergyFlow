@@ -13,6 +13,7 @@ import { getNavItemsForRole, ROLE_LABELS } from "@/lib/rolePermissions";
 const ALL_NAV_ITEMS = [
   { label: "Dashboard", path: "/", icon: LayoutDashboard },
   { label: "Session Register", path: "/session-list", icon: ClipboardList },
+  { label: "Community Exchange", path: "/exchange", icon: Heart },
   { label: "Clients", path: "/clients", icon: Users },
   { label: "Prospects", path: "/prospects", icon: Users },
   { label: "Jobs", path: "/jobs", icon: Wrench },

@@ -1,0 +1,111 @@
+{
+  "name": "ExchangeItem",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Item title"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "mobility",
+        "daily_living",
+        "comfort",
+        "technology",
+        "social",
+        "clothing",
+        "home",
+        "other"
+      ],
+      "description": "Item category"
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "new",
+        "excellent",
+        "good",
+        "fair"
+      ],
+      "default": "good"
+    },
+    "credit_band": {
+      "type": "string",
+      "enum": [
+        "essential",
+        "useful",
+        "quality",
+        "premium",
+        "gift"
+      ],
+      "default": "useful",
+      "description": "Valuation band"
+    },
+    "credit_value": {
+      "type": "number",
+      "description": "Kind Credits required to claim (0 = free gift)"
+    },
+    "is_gift": {
+      "type": "boolean",
+      "default": false,
+      "description": "Free to a good home \u2014 no credits needed"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_review",
+        "available",
+        "reserved",
+        "claimed",
+        "removed"
+      ],
+      "default": "pending_review"
+    },
+    "listed_by_name": {
+      "type": "string"
+    },
+    "listed_by_client_id": {
+      "type": "string"
+    },
+    "claimed_by_name": {
+      "type": "string"
+    },
+    "claimed_by_client_id": {
+      "type": "string"
+    },
+    "claim_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "collection_method": {
+      "type": "string",
+      "enum": [
+        "collection",
+        "delivery",
+        "either"
+      ],
+      "default": "collection"
+    },
+    "town": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "staff_notes": {
+      "type": "string"
+    },
+    "approved_by": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "credit_band"
+  ]
+}
