@@ -9,17 +9,17 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { MapPin, Users, Wrench, Truck, TrendingUp, AlertCircle } from 'lucide-react';
 
-// UK Postcode to coordinates mapping (sample data for Bury area)
+// UK Postcode to coordinates mapping (sample data for Bolton area)
 const postcodeToCoords = {
-  'BL9': [53.5959, -2.2962],
-  'BL0': [53.6478, -2.1628],
-  'BL8': [53.6088, -2.4378],
-  'M25': [53.5522, -2.2813],
-  'M26': [53.5316, -2.2980],
-  'M45': [53.5697, -2.3361],
+  'BL1': [53.5778, -2.4292],
+  'BL2': [53.5872, -2.4018],
+  'BL3': [53.5622, -2.4428],
+  'BL4': [53.5464, -2.3985],
+  'BL5': [53.5431, -2.5086],
+  'BL6': [53.5966, -2.5401],
 };
 
-const buryBounds = [[53.48, -2.45], [53.68, -2.15]];
+const boltonBounds = [[53.50, -2.60], [53.65, -2.35]];
 
 export default function MapDashboard() {
   const [showProspects, setShowProspects] = useState(true);
@@ -149,7 +149,7 @@ export default function MapDashboard() {
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-foreground">Geographic Service Map</h1>
-          <p className="text-muted-foreground mt-1">Prospect density, job locations, and supplier coverage across Bury</p>
+          <p className="text-muted-foreground mt-1">Prospect density, job locations, and supplier coverage across Bolton</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -157,9 +157,9 @@ export default function MapDashboard() {
           <div className="lg:col-span-3">
             <Card className="overflow-hidden h-[600px]">
               <MapContainer
-                center={[53.59, -2.30]}
+                center={[53.577, -2.429]}
                 zoom={12}
-                maxBounds={buryBounds}
+                maxBounds={boltonBounds}
                 style={{ height: '100%', width: '100%' }}
               >
                 <TileLayer

@@ -9,24 +9,24 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { MapPin, Clock, Users, Search, Building2, AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
-const TOWNS = ["Bury", "Ramsbottom", "Tottington", "Prestwich", "Radcliffe", "Whitefield"];
+const TOWNS = ["Bolton", "Farnworth", "Horwich", "Westhoughton", "Kearsley", "Little Lever"];
 
 const TOWN_COLORS = {
-  "Bury": "bg-blue-50 border-blue-200",
-  "Ramsbottom": "bg-purple-50 border-purple-200",
-  "Tottington": "bg-green-50 border-green-200",
-  "Prestwich": "bg-orange-50 border-orange-200",
-  "Radcliffe": "bg-pink-50 border-pink-200",
-  "Whitefield": "bg-yellow-50 border-yellow-200",
+  "Bolton": "bg-blue-50 border-blue-200",
+  "Farnworth": "bg-purple-50 border-purple-200",
+  "Horwich": "bg-green-50 border-green-200",
+  "Westhoughton": "bg-orange-50 border-orange-200",
+  "Kearsley": "bg-pink-50 border-pink-200",
+  "Little Lever": "bg-yellow-50 border-yellow-200",
 };
 
 const TOWN_BADGES = {
-  "Bury": "bg-blue-100 text-blue-800",
-  "Ramsbottom": "bg-purple-100 text-purple-800",
-  "Tottington": "bg-green-100 text-green-800",
-  "Prestwich": "bg-orange-100 text-orange-800",
-  "Radcliffe": "bg-pink-100 text-pink-800",
-  "Whitefield": "bg-yellow-100 text-yellow-800",
+  "Bolton": "bg-blue-100 text-blue-800",
+  "Farnworth": "bg-purple-100 text-purple-800",
+  "Horwich": "bg-green-100 text-green-800",
+  "Westhoughton": "bg-orange-100 text-orange-800",
+  "Kearsley": "bg-pink-100 text-pink-800",
+  "Little Lever": "bg-yellow-100 text-yellow-800",
 };
 
 export default function Services() {
@@ -116,7 +116,7 @@ export default function Services() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-heading font-bold">Services & Locations</h1>
-        <p className="text-muted-foreground mt-1">Find activities and services available across Age UK Bury's catchment areas</p>
+        <p className="text-muted-foreground mt-1">Find activities and services available across Age UK Bolton's catchment areas</p>
       </div>
 
       {/* Quick Town Selection Cards */}

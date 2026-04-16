@@ -27,7 +27,15 @@
     },
     "town": {
       "type": "string",
-      "description": "Town/area within Bury borough"
+      "description": "Town/area within Bolton borough",
+      "enum": [
+        "Bolton",
+        "Farnworth",
+        "Horwich",
+        "Westhoughton",
+        "Kearsley",
+        "Little Lever"
+      ]
     },
     "postcode": {
       "type": "string"

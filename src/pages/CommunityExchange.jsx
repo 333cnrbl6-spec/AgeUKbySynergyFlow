@@ -22,14 +22,14 @@ export default function CommunityExchange() {
             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
               <Heart className="w-5 h-5 text-secondary" />
             </div>
-            <span className="text-white/70 text-sm font-medium uppercase tracking-wider">Age UK Bury</span>
+            <span className="text-white/70 text-sm font-medium uppercase tracking-wider">Age UK Bolton</span>
           </div>
           <h1 className="text-4xl font-bold font-heading mb-2">Community Exchange</h1>
           <p className="text-white/80 text-lg max-w-2xl">
             Share what you no longer need. Find what might help you. Powered by <strong>Kind Credits</strong> — our community currency where generosity is rewarded.
           </p>
           <p className="text-white/60 text-sm max-w-2xl mt-2">
-            This is a community-run exchange and is not operated by Age UK Bury. Please seek professional advice before using any mobility or daily living equipment.
+            This is a community-run exchange and is not operated by Age UK Bolton. Please seek professional advice before using any mobility or daily living equipment.
           </p>
         </div>
       </div>

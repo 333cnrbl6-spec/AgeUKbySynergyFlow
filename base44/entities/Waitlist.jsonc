@@ -23,12 +23,12 @@
     "prospect_town": {
       "type": "string",
       "enum": [
-        "Bury",
-        "Ramsbottom",
-        "Tottington",
-        "Prestwich",
-        "Radcliffe",
-        "Whitefield"
+        "Bolton",
+        "Farnworth",
+        "Horwich",
+        "Westhoughton",
+        "Kearsley",
+        "Little Lever"
       ]
     },
     "date_added": {

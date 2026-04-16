@@ -64,7 +64,7 @@ export default function Dashboard() {
     <div className="space-y-6 max-w-7xl">
       {/* Header */}
       <div>
-        <h1 className="text-2xl lg:text-3xl font-heading font-bold">Good morning, Sue</h1>
+        <h1 className="text-2xl lg:text-3xl font-heading font-bold">Good morning</h1>
         <p className="text-muted-foreground mt-1">{today}</p>
       </div>
 
