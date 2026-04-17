@@ -1,0 +1,73 @@
+{
+  "name": "ServiceFeedback",
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "Reference to Client"
+    },
+    "client_name": {
+      "type": "string"
+    },
+    "job_id": {
+      "type": "string",
+      "description": "Reference to Job (service completed)"
+    },
+    "job_title": {
+      "type": "string"
+    },
+    "service_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When the service was completed"
+    },
+    "work_quality": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Rating of work quality (1-5 stars)"
+    },
+    "professionalism": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Rating of professionalism (1-5 stars)"
+    },
+    "tidiness": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Rating of tidiness/cleanliness (1-5 stars)"
+    },
+    "overall_satisfaction": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Overall satisfaction rating (1-5 stars)"
+    },
+    "comments": {
+      "type": "string",
+      "description": "Detailed feedback from client"
+    },
+    "would_recommend": {
+      "type": "boolean",
+      "description": "Would client recommend this service?"
+    },
+    "improvements_suggested": {
+      "type": "string",
+      "description": "Any suggested improvements"
+    },
+    "submitted_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When feedback was submitted"
+    }
+  },
+  "required": [
+    "client_id",
+    "client_name",
+    "job_id",
+    "work_quality",
+    "overall_satisfaction"
+  ]
+}

@@ -10,6 +10,7 @@ import { LogOut, Calendar, Wrench, User, AlertCircle } from 'lucide-react';
 import ClientActivityBooking from '@/components/portal/ClientActivityBooking';
 import ClientServiceRequest from '@/components/portal/ClientServiceRequest';
 import ClientProfile from '@/components/portal/ClientProfile';
+import ClientScheduledJobs from '@/components/portal/ClientScheduledJobs';
 
 export default function ClientPortal() {
   const navigate = useNavigate();
@@ -151,13 +152,14 @@ export default function ClientPortal() {
         </div>
 
         {/* Main Content */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-            <TabsTrigger value="activities">Activities</TabsTrigger>
-            <TabsTrigger value="requests">Requests</TabsTrigger>
-            <TabsTrigger value="profile">Profile</TabsTrigger>
-          </TabsList>
+         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+           <TabsList className="grid w-full grid-cols-5">
+             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+             <TabsTrigger value="jobs">Scheduled Jobs</TabsTrigger>
+             <TabsTrigger value="activities">Activities</TabsTrigger>
+             <TabsTrigger value="requests">Requests</TabsTrigger>
+             <TabsTrigger value="profile">Profile</TabsTrigger>
+           </TabsList>
 
           {/* Dashboard */}
           <TabsContent value="dashboard" className="space-y-6">
@@ -233,6 +235,11 @@ export default function ClientPortal() {
                 </div>
               </CardContent>
             </Card>
+          </TabsContent>
+
+          {/* Scheduled Jobs */}
+          <TabsContent value="jobs">
+            <ClientScheduledJobs clientId={client.id} />
           </TabsContent>
 
           {/* Activities */}
