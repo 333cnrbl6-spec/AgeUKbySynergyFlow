@@ -27,14 +27,14 @@
     },
     "town": {
       "type": "string",
-      "description": "Town/area within Bolton borough",
+      "description": "Town/area within Bury borough",
       "enum": [
-        "Bolton",
-        "Farnworth",
-        "Horwich",
-        "Westhoughton",
-        "Kearsley",
-        "Little Lever"
+        "Bury",
+        "Ramsbottom",
+        "Tottington",
+        "Prestwich",
+        "Radcliffe",
+        "Whitefield"
       ]
     },
     "postcode": {
@@ -117,7 +117,7 @@
           },
           "trigger_event": {
             "type": "string",
-            "description": "What triggered the referral (e.g., 'Job completed for isolated client')"
+            "description": "What triggered the referral"
           },
           "referred_date": {
             "type": "string",

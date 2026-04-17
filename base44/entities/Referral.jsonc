@@ -9,7 +9,7 @@
       "type": "string",
       "enum": [
         "gp_social_prescribing",
-        "bolton_council_asc",
+        "bury_council_asc",
         "hospital_discharge",
         "self_referral",
         "family_carer",
@@ -21,7 +21,7 @@
     },
     "referring_organisation": {
       "type": "string",
-      "description": "e.g. Bolton GP Federation, Royal Bolton Hospital"
+      "description": "e.g. Bury GP Federation, Royal Bolton Hospital"
     },
     "referring_person_name": {
       "type": "string"
@@ -74,7 +74,7 @@
       "items": {
         "type": "string"
       },
-      "description": "Which Age UK Bolton services are needed"
+      "description": "Which Age UK Bury services are needed"
     },
     "urgency": {
       "type": "string",

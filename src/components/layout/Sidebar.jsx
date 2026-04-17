@@ -63,7 +63,7 @@ export default function Sidebar() {
           </div>
           {!collapsed && (
             <div className="overflow-hidden">
-              <h1 className="font-heading font-bold text-white text-sm leading-tight">Age UK Bolton</h1>
+              <h1 className="font-heading font-bold text-white text-sm leading-tight">Age UK Bury</h1>
               <p className="text-xs text-white/60 leading-tight">Management System</p>
             </div>
           )}

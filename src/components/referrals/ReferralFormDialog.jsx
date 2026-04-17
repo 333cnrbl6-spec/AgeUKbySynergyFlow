@@ -67,7 +67,7 @@ export default function ReferralFormDialog({ open, onOpenChange, referral, onSav
                   <Select value={form.referral_source_type} onValueChange={v=>set("referral_source_type",v)}>
                     <SelectTrigger className="mt-1"><SelectValue /></SelectTrigger>
                     <SelectContent>
-                      {[["gp_social_prescribing","GP / Social Prescribing"],["bolton_council_asc","Bolton Council ASC"],["hospital_discharge","Hospital Discharge"],["self_referral","Self-Referral"],["family_carer","Family / Carer"],["nhs_community","NHS Community"],["another_charity","Another Charity"],["other","Other"]].map(([v,l])=><SelectItem key={v} value={v}>{l}</SelectItem>)}
+                      {[["gp_social_prescribing","GP / Social Prescribing"],["bury_council_asc","Bury Council ASC"],["hospital_discharge","Hospital Discharge"],["self_referral","Self-Referral"],["family_carer","Family / Carer"],["nhs_community","NHS Community"],["another_charity","Another Charity"],["other","Other"]].map(([v,l])=><SelectItem key={v} value={v}>{l}</SelectItem>)}
                     </SelectContent>
                   </Select>
                 </div>
@@ -79,7 +79,7 @@ export default function ReferralFormDialog({ open, onOpenChange, referral, onSav
                     </SelectContent>
                   </Select>
                 </div>
-                <div><Label className="text-xs">Referring Organisation</Label><Input value={form.referring_organisation||""} onChange={e=>set("referring_organisation",e.target.value)} placeholder="e.g. Bolton GP Federation" className="mt-1" /></div>
+                <div><Label className="text-xs">Referring Organisation</Label><Input value={form.referring_organisation||""} onChange={e=>set("referring_organisation",e.target.value)} placeholder="e.g. Bury GP Federation" className="mt-1" /></div>
                 <div><Label className="text-xs">Referring Person</Label><Input value={form.referring_person_name||""} onChange={e=>set("referring_person_name",e.target.value)} className="mt-1" /></div>
                 <div><Label className="text-xs">Referrer Email</Label><Input type="email" value={form.referring_person_email||""} onChange={e=>set("referring_person_email",e.target.value)} className="mt-1" /></div>
                 <div><Label className="text-xs">Referrer Phone</Label><Input value={form.referring_person_phone||""} onChange={e=>set("referring_person_phone",e.target.value)} className="mt-1" /></div>

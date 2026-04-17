@@ -25,14 +25,14 @@
     "town": {
       "type": "string",
       "enum": [
-        "Bolton",
-        "Farnworth",
-        "Horwich",
-        "Westhoughton",
-        "Kearsley",
-        "Little Lever"
+        "Bury",
+        "Ramsbottom",
+        "Tottington",
+        "Prestwich",
+        "Radcliffe",
+        "Whitefield"
       ],
-      "description": "Must be in Age UK Bolton catchment area"
+      "description": "Must be in Age UK Bury catchment area"
     },
     "postcode": {
       "type": "string"
