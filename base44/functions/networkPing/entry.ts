@@ -16,12 +16,18 @@ Deno.serve(async (req) => {
       return Response.json({ connected: false, error: 'Hub URL and API key not configured' });
     }
 
-    const pingResponse = await fetch(`${config.hub_api_url}/ping`, {
-      method: 'GET',
+    // Ping the Hub with a minimal POST to test connectivity
+    const hubUrl = config.hub_api_url || 'https://api.base44.com/api/apps/6802d80c68e8e7ecfa12c3ef/functions/receiveBranchSync';
+    const hubApiKey = config.hub_api_key || 'auk_Bx7mK2pQnR9vLsY4wJdF6tUeA3hCgN8X';
+
+    const pingResponse = await fetch(hubUrl, {
+      method: 'POST',
       headers: {
-        'X-Branch-API-Key': config.hub_api_key,
-        'X-Branch-ID': config.branch_id || config.id,
+        'Content-Type': 'application/json',
+        'X-Branch-API-Key': hubApiKey,
+        'X-Branch-ID': config.branch_id || 'bury',
       },
+      body: JSON.stringify({ report_period: 'ping-test', stats: { ping: true } }),
     });
 
     const connected = pingResponse.ok;

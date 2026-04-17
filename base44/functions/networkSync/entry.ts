@@ -70,15 +70,23 @@ Deno.serve(async (req) => {
       }
     };
 
-    // Push to Hub
-    const hubResponse = await fetch(`${config.hub_api_url}/branch-sync`, {
+    // Push to Hub — use the exact configured URL (no path appended)
+    const hubUrl = config.hub_api_url || 'https://api.base44.com/api/apps/6802d80c68e8e7ecfa12c3ef/functions/receiveBranchSync';
+    const hubApiKey = config.hub_api_key || 'auk_Bx7mK2pQnR9vLsY4wJdF6tUeA3hCgN8X';
+
+    const hubResponse = await fetch(hubUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Branch-API-Key': config.hub_api_key,
-        'X-Branch-ID': config.branch_id || config.id,
+        'X-Branch-API-Key': hubApiKey,
+        'X-Branch-ID': config.branch_id || 'bury',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({
+        report_period: `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`,
+        stats: payload.stats,
+        branch_name: payload.branch_name,
+        report_date: payload.report_date,
+      }),
     });
 
     const resultText = await hubResponse.text();
