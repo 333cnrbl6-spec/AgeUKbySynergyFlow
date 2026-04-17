@@ -31,13 +31,15 @@ Deno.serve(async (req) => {
     });
 
     const connected = pingResponse.ok;
+    let responseBody = null;
+    try { responseBody = await pingResponse.json(); } catch (_) { responseBody = null; }
 
     await base44.asServiceRole.entities.NetworkConfig.update(config.id, {
       connection_status: connected ? 'connected' : 'error',
       last_sync_result: connected ? 'Ping successful' : `Ping failed: ${pingResponse.status}`,
     });
 
-    return Response.json({ connected, status: pingResponse.status });
+    return Response.json({ connected, status: pingResponse.status, url_used: hubUrl, response_body: responseBody });
 
   } catch (error) {
     return Response.json({ connected: false, error: error.message }, { status: 500 });
