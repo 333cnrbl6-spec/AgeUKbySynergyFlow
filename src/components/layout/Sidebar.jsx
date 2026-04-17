@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import NetworkStatusBadge from "./NetworkStatusBadge";
 import { 
   LayoutDashboard, Users, Wrench, Calendar, Receipt, 
   UserCog, Menu, X, ChevronRight, Heart, Truck, Building2,
@@ -37,6 +38,7 @@ const ALL_NAV_ITEMS = [
   { label: "Staff", path: "/staff", icon: UserCog },
   { label: "Staff Calendar", path: "/staff-calendar", icon: Calendar },
   { label: "Xero", path: "/xero", icon: Link2, xero: true },
+  { label: "Network", path: "/network", icon: Network, dividerBefore: true },
 ];
 
 export default function Sidebar() {
@@ -75,32 +77,45 @@ export default function Sidebar() {
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.path);
+
+          // Network item gets special treatment — use the live status badge
+          if (item.path === "/network") {
+            return (
+              <div key={item.label}>
+                {item.dividerBefore && <div className="my-2 border-t border-sidebar-border/50" />}
+                <NetworkStatusBadge collapsed={collapsed} />
+              </div>
+            );
+          }
+
           return (
-            <Link
-              key={item.label}
-              to={item.path}
-              onClick={() => setMobileOpen(false)}
-              className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group",
-                active 
-                  ? "bg-sidebar-accent text-white font-medium" 
-                  : "text-white/70 hover:bg-sidebar-accent/50 hover:text-white"
-              )}
-            >
-              {item.xero ? (
-                <span className="w-4 h-4 flex-shrink-0 rounded-sm flex items-center justify-center text-xs font-bold italic" style={{ backgroundColor: '#13B5EA', color: 'white', fontSize: '10px' }}>x</span>
-              ) : (
-                <Icon className={cn("w-4 h-4 flex-shrink-0", active && "text-secondary")} />
-              )}
-              {!collapsed && (
-                <>
-                  <span className={cn("text-sm", item.xero && "font-medium")} style={item.xero ? { color: '#13B5EA' } : {}}>
-                    {item.label}
-                  </span>
-                  {active && <ChevronRight className="w-4 h-4 ml-auto opacity-60" />}
-                </>
-              )}
-            </Link>
+            <div key={item.label}>
+              {item.dividerBefore && <div className="my-2 border-t border-sidebar-border/50" />}
+              <Link
+                to={item.path}
+                onClick={() => setMobileOpen(false)}
+                className={cn(
+                  "flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group",
+                  active
+                    ? "bg-sidebar-accent text-white font-medium"
+                    : "text-white/70 hover:bg-sidebar-accent/50 hover:text-white"
+                )}
+              >
+                {item.xero ? (
+                  <span className="w-4 h-4 flex-shrink-0 rounded-sm flex items-center justify-center text-xs font-bold italic" style={{ backgroundColor: '#13B5EA', color: 'white', fontSize: '10px' }}>x</span>
+                ) : (
+                  <Icon className={cn("w-4 h-4 flex-shrink-0", active && "text-secondary")} />
+                )}
+                {!collapsed && (
+                  <>
+                    <span className={cn("text-sm", item.xero && "font-medium")} style={item.xero ? { color: '#13B5EA' } : {}}>
+                      {item.label}
+                    </span>
+                    {active && <ChevronRight className="w-4 h-4 ml-auto opacity-60" />}
+                  </>
+                )}
+              </Link>
+            </div>
           );
         })}
       </nav>

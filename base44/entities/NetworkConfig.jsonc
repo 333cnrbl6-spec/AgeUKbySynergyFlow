@@ -1,0 +1,48 @@
+{
+  "name": "NetworkConfig",
+  "type": "object",
+  "properties": {
+    "branch_id": {
+      "type": "string",
+      "description": "Unique identifier for this branch in the network"
+    },
+    "branch_name": {
+      "type": "string",
+      "description": "Display name e.g. Age UK Bury"
+    },
+    "hub_api_url": {
+      "type": "string",
+      "description": "The Network Hub's API endpoint URL"
+    },
+    "hub_api_key": {
+      "type": "string",
+      "description": "Secret key issued by the Hub to authenticate this branch"
+    },
+    "connection_status": {
+      "type": "string",
+      "enum": [
+        "disconnected",
+        "connected",
+        "error"
+      ],
+      "default": "disconnected"
+    },
+    "last_sync_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When stats were last pushed to the Hub"
+    },
+    "auto_sync_enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to auto-push monthly stats to the Hub"
+    },
+    "last_sync_result": {
+      "type": "string",
+      "description": "Result message from last sync attempt"
+    }
+  },
+  "required": [
+    "branch_name"
+  ]
+}
