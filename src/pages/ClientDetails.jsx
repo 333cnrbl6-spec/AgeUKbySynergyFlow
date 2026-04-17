@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, Phone, Mail, MapPin, FileText, History } from 'lucide-react';
 import ReferralHistory from '@/components/clients/ReferralHistory';
 import ClientFormDialog from '@/components/clients/ClientFormDialog';
+import ClientInsightsWidget from '@/components/clients/ClientInsightsWidget';
 
 export default function ClientDetails() {
   const { clientId } = useParams();
@@ -151,16 +152,28 @@ export default function ClientDetails() {
         </Card>
       )}
 
+      {/* AI Insights Section */}
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+        <div className="mb-4">
+          <h2 className="text-lg font-heading font-semibold flex items-center gap-2">
+            <span className="text-2xl">✨</span>
+            AI Client Insights
+          </h2>
+          <p className="text-sm text-muted-foreground mt-1">Personalized analysis to enhance client engagement</p>
+        </div>
+        <ClientInsightsWidget clientId={clientId} clientName={`${client.first_name} ${client.last_name}`} />
+      </div>
+
       {/* Tabs */}
-      <Tabs defaultValue="jobs" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="jobs">Jobs ({jobs.length})</TabsTrigger>
-          <TabsTrigger value="referrals">
-            <History className="w-4 h-4 mr-2" />
-            Referral History
-          </TabsTrigger>
-          <TabsTrigger value="notes">Notes</TabsTrigger>
-        </TabsList>
+       <Tabs defaultValue="jobs" className="w-full">
+         <TabsList className="grid w-full grid-cols-3">
+           <TabsTrigger value="jobs">Jobs ({jobs.length})</TabsTrigger>
+           <TabsTrigger value="referrals">
+             <History className="w-4 h-4 mr-2" />
+             Referral History
+           </TabsTrigger>
+           <TabsTrigger value="notes">Notes</TabsTrigger>
+         </TabsList>
 
         {/* Jobs Tab */}
         <TabsContent value="jobs">
