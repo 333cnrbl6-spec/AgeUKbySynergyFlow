@@ -1,0 +1,42 @@
+{
+  "name": "HolidayRequest",
+  "type": "object",
+  "properties": {
+    "staff_name": {
+      "type": "string",
+      "description": "Name of the staff member"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "First day of requested holiday"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Last day of requested holiday"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason for holiday"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "approved_by": {
+      "type": "string",
+      "description": "Staff member who approved"
+    }
+  },
+  "required": [
+    "staff_name",
+    "start_date",
+    "end_date"
+  ]
+}
