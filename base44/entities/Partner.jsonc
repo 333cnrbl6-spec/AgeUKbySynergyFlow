@@ -8,7 +8,7 @@
     "partner_type": {
       "type": "string",
       "enum": [
-        "bury_council",
+        "bolton_council",
         "nhs_icb",
         "gp_federation",
         "hospital",

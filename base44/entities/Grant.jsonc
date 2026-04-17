@@ -13,7 +13,7 @@
     "funder_type": {
       "type": "string",
       "enum": [
-        "bury_council",
+        "bolton_council",
         "national_lottery",
         "lloyds_foundation",
         "nhs",
@@ -41,7 +41,7 @@
         "home_from_hospital",
         "information_advice",
         "jubilee_centre",
-        "dumers_lane",
+        "bolton_activities",
         "friends_together",
         "social_prescribing",
         "general",

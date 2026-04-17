@@ -25,8 +25,8 @@ const priorityConfig = {
 };
 
 const dataSourceLabels = {
-  bury_council_asc: 'Bury Council ASC',
-  nhs_bury_icb: 'NHS Bury ICB',
+  bolton_council_asc: 'Bolton Council ASC',
+  nhs_bolton_icb: 'NHS Bolton ICB',
   gp_patient_data: 'GP Patient Data',
   data_broker: 'Data Broker',
   council_housing: 'Council Housing',

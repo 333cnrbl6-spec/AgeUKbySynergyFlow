@@ -23,7 +23,7 @@ const urgencyColors = { routine: "text-gray-500", soon: "text-amber-600", urgent
 
 const sourceLabels = {
   gp_social_prescribing: "GP / Social Prescribing",
-  bury_council_asc: "Bury Council ASC",
+  bolton_council_asc: "Bolton Council ASC",
   hospital_discharge: "Hospital Discharge",
   self_referral: "Self-Referral",
   family_carer: "Family / Carer",

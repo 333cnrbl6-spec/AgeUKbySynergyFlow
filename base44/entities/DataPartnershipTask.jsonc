@@ -13,8 +13,8 @@
     "data_source": {
       "type": "string",
       "enum": [
-        "bury_council_asc",
-        "nhs_bury_icb",
+        "bolton_council_asc",
+        "nhs_bolton_icb",
         "gp_patient_data",
         "data_broker",
         "council_housing",
