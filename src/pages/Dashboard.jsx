@@ -8,6 +8,7 @@ import RevenueChart from "../components/dashboard/RevenueChart";
 import XeroWidget from "../components/dashboard/XeroWidget";
 import DementiaSupportWidget from "../components/dashboard/DementiaSupportWidget";
 import DataPartnershipWidget from "../components/dashboard/DataPartnershipWidget";
+import ActivityWidget from "../components/dashboard/ActivityWidget";
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -115,7 +116,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Bottom row: Recent Jobs + Dementia Support + Data Partnerships */}
+      {/* Bottom row: Recent Jobs + Dementia Support + Data Partnerships + Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-card rounded-xl p-5 shadow-sm border border-border/50">
           <h2 className="font-heading font-semibold text-lg mb-3">Recent Jobs</h2>
@@ -126,6 +127,9 @@ export default function Dashboard() {
           <DataPartnershipWidget />
         </div>
       </div>
+
+      {/* Activity Feed */}
+      <ActivityWidget />
 
       {/* Xero Integration */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

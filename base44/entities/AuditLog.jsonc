@@ -1,0 +1,41 @@
+{
+  "name": "AuditLog",
+  "type": "object",
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "description": "Entity that was changed (Job, Client, etc)"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "ID of the entity"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "created",
+        "updated",
+        "deleted",
+        "file_uploaded"
+      ],
+      "description": "What happened"
+    },
+    "changed_by": {
+      "type": "string",
+      "description": "User email who made the change"
+    },
+    "changes": {
+      "type": "string",
+      "description": "Summary of what changed"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "entity_type",
+    "entity_id",
+    "action"
+  ]
+}
