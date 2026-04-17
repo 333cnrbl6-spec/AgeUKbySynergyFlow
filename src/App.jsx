@@ -39,6 +39,7 @@ import SessionList from './pages/SessionList';
 import CommunityExchange from './pages/CommunityExchange';
 import NetworkSettings from './pages/NetworkSettings';
 import StaffScheduling from './pages/StaffScheduling';
+import Volunteers from './pages/Volunteers';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -100,6 +101,7 @@ const AuthenticatedApp = () => {
         <Route path="/exchange" element={<CommunityExchange />} />
         <Route path="/network" element={<NetworkSettings />} />
         <Route path="/scheduling" element={<StaffScheduling />} />
+        <Route path="/volunteers" element={<Volunteers />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

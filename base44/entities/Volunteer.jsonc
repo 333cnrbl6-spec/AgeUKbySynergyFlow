@@ -1,0 +1,116 @@
+{
+  "name": "Volunteer",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string",
+      "enum": [
+        "Bury",
+        "Ramsbottom",
+        "Tottington",
+        "Prestwich",
+        "Radcliffe",
+        "Whitefield"
+      ],
+      "description": "Area served"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "e.g. carpentry, plumbing, befriending"
+    },
+    "availability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "day_of_week": {
+            "type": "string",
+            "enum": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ]
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Weekly availability slots"
+    },
+    "experience_level": {
+      "type": "string",
+      "enum": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ],
+      "default": "beginner"
+    },
+    "jobs_completed": {
+      "type": "number",
+      "default": 0
+    },
+    "hours_volunteered": {
+      "type": "number",
+      "default": 0
+    },
+    "engagement_score": {
+      "type": "number",
+      "default": 0,
+      "description": "0-100 score based on activity"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "dormant"
+      ],
+      "default": "active"
+    },
+    "joined_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "last_activity_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Types of work interested in"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "location"
+  ]
+}
