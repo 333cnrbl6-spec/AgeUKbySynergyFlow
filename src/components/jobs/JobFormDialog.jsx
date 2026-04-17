@@ -7,7 +7,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
+import { Wand2 } from "lucide-react";
 import VolunteerMatchingPanel from "./VolunteerMatchingPanel";
+import JobDescriptionGenerator from "./JobDescriptionGenerator";
 
 const JOB_TYPES = [
   { value: "handrails", label: "Handrails" },
@@ -46,6 +48,7 @@ const emptyJob = {
 export default function JobFormDialog({ open, onOpenChange, job, onSave }) {
   const [form, setForm] = useState(emptyJob);
   const [saving, setSaving] = useState(false);
+  const [generatorOpen, setGeneratorOpen] = useState(false);
 
   const { data: clients = [] } = useQuery({
     queryKey: ["clients"],
@@ -119,6 +122,15 @@ export default function JobFormDialog({ open, onOpenChange, job, onSave }) {
 
   const update = (field, value) => setForm(prev => ({ ...prev, [field]: value }));
 
+  const handleGeneratedContent = (generated) => {
+    setForm(prev => ({
+      ...prev,
+      title: generated.title || prev.title,
+      description: generated.description || prev.description
+    }));
+    setGeneratorOpen(false);
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
@@ -157,7 +169,19 @@ export default function JobFormDialog({ open, onOpenChange, job, onSave }) {
           </div>
 
           <div>
-            <Label>Description</Label>
+            <div className="flex justify-between items-center mb-1">
+              <Label>Description</Label>
+              <Button 
+                type="button"
+                size="sm" 
+                variant="ghost"
+                onClick={() => setGeneratorOpen(true)}
+                className="gap-1 h-8"
+              >
+                <Wand2 className="w-3.5 h-3.5" />
+                AI Generate
+              </Button>
+            </div>
             <Textarea value={form.description} onChange={(e) => update("description", e.target.value)} rows={3} placeholder="Detailed description of work..." />
           </div>
 
@@ -288,6 +312,12 @@ export default function JobFormDialog({ open, onOpenChange, job, onSave }) {
             </div>
           )}
           </div>
+
+          <JobDescriptionGenerator 
+            isOpen={generatorOpen}
+            onClose={() => setGeneratorOpen(false)}
+            onSelect={handleGeneratedContent}
+          />
           </DialogContent>
           </Dialog>
           );
