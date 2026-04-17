@@ -40,6 +40,7 @@ import CommunityExchange from './pages/CommunityExchange';
 import NetworkSettings from './pages/NetworkSettings';
 import StaffScheduling from './pages/StaffScheduling';
 import Volunteers from './pages/Volunteers';
+import ReportGeneratorPage from './pages/ReportGenerator';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -102,6 +103,7 @@ const AuthenticatedApp = () => {
         <Route path="/network" element={<NetworkSettings />} />
         <Route path="/scheduling" element={<StaffScheduling />} />
         <Route path="/volunteers" element={<Volunteers />} />
+        <Route path="/reports" element={<ReportGeneratorPage />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
