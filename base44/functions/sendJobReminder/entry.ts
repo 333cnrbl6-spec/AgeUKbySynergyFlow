@@ -1,50 +1,39 @@
-import { createClientFromRequest } from 'npm:@base44/sdk@0.8.23';
+import { createClientFromRequest } from 'npm:@base44/sdk@0.8.25';
 
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
-    const { job_id, job_title, client_name, client_email, scheduled_date, scheduled_time, organiser_name } = await req.json();
+    const user = await base44.auth.me();
 
-    if (!client_email || !scheduled_date) {
-      return Response.json({ error: 'Missing required fields' }, { status: 400 });
+    if (!user) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Format date for readability
-    const reminderDate = new Date(scheduled_date);
-    const formattedDate = reminderDate.toLocaleDateString('en-GB', { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
+    const body = await req.json();
+    const { job_id } = body;
 
-    const emailBody = `Dear ${client_name},
+    const jobs = await base44.entities.Job.list();
+    const job = jobs.find(j => j.id === job_id && j.branch_id === user.branch_id);
 
-We have an appointment coming up!
+    if (!job) {
+      return Response.json({ error: 'Job not found' }, { status: 404 });
+    }
 
-Service: ${job_title}
-Date: ${formattedDate}
-Time: ${scheduled_time || 'To be confirmed'}
-Staff Member: ${organiser_name || 'Our team'}
+    // Send email reminder via integration
+    if (job.assigned_to) {
+      const staff = await base44.entities.StaffMember.list();
+      const assignee = staff.find(s => s.id === job.assigned_to);
 
-If you need to reschedule or have any questions, please contact Age UK Bury on 0161 XXX XXXX.
+      if (assignee && assignee.email) {
+        await base44.integrations.Core.SendEmail({
+          to: assignee.email,
+          subject: `Reminder: ${job.title}`,
+          body: `You have a job scheduled: ${job.title} on ${job.scheduled_date}`
+        });
+      }
+    }
 
-Best regards,
-Age UK Bury Team`;
-
-    const result = await base44.integrations.Core.SendEmail({
-      to: client_email,
-      subject: `Reminder: Your Age UK Bury appointment on ${formattedDate}`,
-      body: emailBody,
-      from_name: 'Age UK Bury Appointments'
-    });
-
-    return Response.json({ 
-      success: true, 
-      message: 'Reminder sent',
-      email_sent_to: client_email,
-      job_id
-    });
+    return Response.json({ sent: true });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
   }

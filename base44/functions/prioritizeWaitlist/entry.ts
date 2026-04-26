@@ -1,68 +1,33 @@
-import { createClientFromRequest } from 'npm:@base44/sdk@0.8.23';
+import { createClientFromRequest } from 'npm:@base44/sdk@0.8.25';
 
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
-    const { service_name } = await req.json();
+    const user = await base44.auth.me();
 
-    if (!service_name) {
-      return Response.json({ error: 'Missing service_name' }, { status: 400 });
+    if (!user) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Fetch all waitlist entries for this service
-    const waitlist = await base44.entities.Waitlist.filter({ 
-      service_name,
+    const waitlist = await base44.entities.Waitlist.filter({
+      branch_id: user.branch_id,
       status: 'waiting'
     });
 
-    if (waitlist.length === 0) {
-      return Response.json({ 
-        success: true, 
-        service_name,
-        message: 'No waiting prospects',
-        prioritized: []
-      });
+    // Sort by urgency and date
+    const sorted = waitlist.sort((a, b) => {
+      const urgencyOrder = { urgent: 0, soon: 1, routine: 2 };
+      const urgencyDiff = urgencyOrder[a.urgency] - urgencyOrder[b.urgency];
+      if (urgencyDiff !== 0) return urgencyDiff;
+      return new Date(a.date_added) - new Date(b.date_added);
+    });
+
+    // Update positions
+    for (let i = 0; i < sorted.length; i++) {
+      await base44.entities.Waitlist.update(sorted[i].id, { position: i + 1 });
     }
 
-    // Score and prioritize based on urgency and location
-    const scored = waitlist.map(entry => {
-      let score = 0;
-
-      // Urgency scoring (0-100 points)
-      if (entry.urgency === 'urgent') score += 100;
-      else if (entry.urgency === 'soon') score += 50;
-      else score += 0;
-
-      // Days waiting (loyalty bonus - 1 point per day, max 30)
-      const daysWaiting = Math.floor((new Date() - new Date(entry.date_added)) / (1000 * 60 * 60 * 24));
-      score += Math.min(30, daysWaiting);
-
-      return {
-        ...entry,
-        score,
-        days_waiting: daysWaiting
-      };
-    });
-
-    // Sort by score (highest first), then by days waiting
-    const prioritized = scored.sort((a, b) => {
-      if (b.score !== a.score) return b.score - a.score;
-      return b.days_waiting - a.days_waiting;
-    });
-
-    // Assign positions
-    const withPositions = prioritized.map((entry, idx) => ({
-      ...entry,
-      position: idx + 1
-    }));
-
-    return Response.json({
-      success: true,
-      service_name,
-      total_waiting: withPositions.length,
-      prioritized: withPositions,
-      top_prospect: withPositions[0] || null,
-    });
+    return Response.json({ total: sorted.length, repositioned: true });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
   }

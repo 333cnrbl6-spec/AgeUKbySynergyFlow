@@ -1,45 +1,41 @@
-import { createClientFromRequest } from 'npm:@base44/sdk@0.8.23';
+import { createClientFromRequest } from 'npm:@base44/sdk@0.8.25';
 
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
-    const { waitlist_id, prospect_id, prospect_name, prospect_phone, prospect_email, prospect_town, prospect_dob } = await req.json();
+    const user = await base44.auth.me();
 
-    if (!waitlist_id || !prospect_name) {
-      return Response.json({ error: 'Missing required fields' }, { status: 400 });
+    if (!user) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Parse prospect name
-    const nameParts = prospect_name.trim().split(' ');
-    const first_name = nameParts[0];
-    const last_name = nameParts.slice(1).join(' ') || first_name;
+    const body = await req.json();
+    const { waitlist_id } = body;
 
-    // Create new client from waitlist prospect
-    const newClient = await base44.entities.Client.create({
-      first_name,
-      last_name,
-      phone: prospect_phone || '',
-      email: prospect_email || '',
-      town: prospect_town || '',
-      status: 'active',
-      referral_source: 'waitlist',
-      notes: `Converted from waitlist - was waiting for service`
+    const waitlist = await base44.entities.Waitlist.list();
+    const item = waitlist.find(w => w.id === waitlist_id && w.branch_id === user.branch_id);
+
+    if (!item) {
+      return Response.json({ error: 'Not found' }, { status: 404 });
+    }
+
+    // Create client from waitlist
+    const client = await base44.entities.Client.create({
+      branch_id: user.branch_id,
+      first_name: item.prospect_name.split(' ')[0],
+      last_name: item.prospect_name.split(' ').slice(1).join(' '),
+      phone: item.prospect_phone,
+      email: item.prospect_email,
+      town: item.prospect_town
     });
 
-    // Update waitlist entry
+    // Update waitlist
     await base44.entities.Waitlist.update(waitlist_id, {
-      status: 'converted',
-      converted_to_client_id: newClient.id
+      converted_to_client_id: client.id,
+      status: 'converted'
     });
 
-    return Response.json({
-      success: true,
-      message: 'Prospect converted to client',
-      waitlist_id,
-      client_id: newClient.id,
-      client_name: `${first_name} ${last_name}`,
-      phone: prospect_phone
-    });
+    return Response.json({ client_id: client.id });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
   }

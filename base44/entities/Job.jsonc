@@ -2,136 +2,75 @@
   "name": "Job",
   "type": "object",
   "properties": {
-    "client_id": {
-      "type": "string",
-      "description": "Reference to the client"
-    },
-    "client_name": {
-      "type": "string",
-      "description": "Client full name for display"
+    "branch_id": {
+      "type": "string"
     },
     "title": {
-      "type": "string",
-      "description": "Brief description of the job"
+      "type": "string"
     },
     "description": {
-      "type": "string",
-      "description": "Detailed description of work required"
+      "type": "string"
     },
-    "job_type": {
-      "type": "string",
-      "enum": [
-        "handrails",
-        "security_locks",
-        "shelves",
-        "curtain_rails",
-        "wall_decorations",
-        "minor_plumbing",
-        "painting_decorating",
-        "light_bulbs",
-        "flat_pack",
-        "smoke_alarms",
-        "key_safes",
-        "draught_excluders",
-        "carpet_cleaning",
-        "minor_gardening",
-        "fence_painting",
-        "furniture_moving",
-        "other"
-      ],
-      "description": "Category of work"
+    "client_id": {
+      "type": "string"
+    },
+    "client_name": {
+      "type": "string"
     },
     "status": {
       "type": "string",
       "enum": [
-        "enquiry",
-        "assessment_booked",
-        "quoted",
-        "scheduled",
+        "pending",
+        "assigned",
         "in_progress",
         "completed",
-        "paid",
-        "cancelled",
-        "referred_out"
-      ],
-      "default": "enquiry",
-      "description": "Current job status"
-    },
-    "assigned_to": {
-      "type": "string",
-      "description": "Staff member assigned to the job"
-    },
-    "scheduled_date": {
-      "type": "string",
-      "format": "date",
-      "description": "Date the job is scheduled for"
-    },
-    "scheduled_time": {
-      "type": "string",
-      "description": "Time slot for the job"
-    },
-    "estimated_hours": {
-      "type": "number",
-      "description": "Estimated hours for the job"
-    },
-    "actual_hours": {
-      "type": "number",
-      "description": "Actual hours worked"
-    },
-    "materials_cost": {
-      "type": "number",
-      "description": "Cost of materials"
-    },
-    "labour_cost": {
-      "type": "number",
-      "description": "Labour charge"
-    },
-    "total_cost": {
-      "type": "number",
-      "description": "Total cost (labour + materials)"
-    },
-    "payment_method": {
-      "type": "string",
-      "enum": [
-        "card",
-        "cash",
-        "cheque",
-        "unpaid"
-      ],
-      "default": "unpaid"
-    },
-    "payment_status": {
-      "type": "string",
-      "enum": [
-        "unpaid",
-        "paid",
-        "waived"
-      ],
-      "default": "unpaid"
-    },
-    "referral_notes": {
-      "type": "string",
-      "description": "If referred out, notes on who was referred to"
-    },
-    "address": {
-      "type": "string",
-      "description": "Job address (may differ from client address)"
+        "cancelled"
+      ]
     },
     "priority": {
       "type": "string",
       "enum": [
         "low",
         "medium",
-        "high",
-        "urgent"
-      ],
-      "default": "medium"
+        "high"
+      ]
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "scheduled_time": {
+      "type": "string"
+    },
+    "duration_hours": {
+      "type": "number"
+    },
+    "assigned_to": {
+      "type": "string"
+    },
+    "assigned_to_name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "cost_estimate": {
+      "type": "number"
+    },
+    "cost_actual": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "completion_date": {
+      "type": "string",
+      "format": "date"
     }
   },
   "required": [
-    "client_id",
-    "client_name",
+    "branch_id",
     "title",
-    "job_type"
+    "client_id"
   ]
 }

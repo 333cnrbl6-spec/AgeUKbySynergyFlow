@@ -2,19 +2,20 @@
   "name": "StaffMember",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "name": {
-      "type": "string",
-      "description": "Full name"
+      "type": "string"
     },
     "role": {
       "type": "string",
       "enum": [
         "admin",
-        "handyperson",
         "manager",
+        "staff",
         "volunteer"
-      ],
-      "description": "Staff role"
+      ]
     },
     "phone": {
       "type": "string"
@@ -24,8 +25,7 @@
     },
     "dbs_checked": {
       "type": "boolean",
-      "default": true,
-      "description": "DBS check status"
+      "default": true
     },
     "dbs_expiry": {
       "type": "string",
@@ -44,6 +44,7 @@
     }
   },
   "required": [
+    "branch_id",
     "name",
     "role"
   ]
