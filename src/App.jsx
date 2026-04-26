@@ -42,6 +42,8 @@ import NetworkSettings from './pages/NetworkSettings';
 import StaffScheduling from './pages/StaffScheduling';
 import Volunteers from './pages/Volunteers';
 import ReportGeneratorPage from './pages/ReportGenerator';
+import NetworkAnalytics from './pages/NetworkAnalytics';
+import DataImport from './pages/DataImport';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -105,6 +107,8 @@ const AuthenticatedApp = () => {
         <Route path="/scheduling" element={<StaffScheduling />} />
         <Route path="/volunteers" element={<Volunteers />} />
         <Route path="/reports" element={<ReportGeneratorPage />} />
+        <Route path="/network-analytics" element={<NetworkAnalytics />} />
+        <Route path="/import" element={<DataImport />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
