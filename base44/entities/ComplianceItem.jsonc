@@ -2,78 +2,62 @@
   "name": "ComplianceItem",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "title": {
       "type": "string"
     },
     "category": {
-      "type": "string",
-      "enum": [
-        "charity_commission",
-        "companies_house",
-        "oqs_standard",
-        "insurance",
-        "dbs",
-        "health_safety",
-        "gdpr",
-        "safeguarding",
-        "trustee_governance",
-        "contract_compliance",
-        "other"
-      ]
+      "type": "string"
     },
     "description": {
       "type": "string"
     },
-    "due_date": {
+    "requirement": {
+      "type": "string"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "annual",
+        "biannual",
+        "quarterly",
+        "monthly",
+        "one_time"
+      ]
+    },
+    "last_completed": {
       "type": "string",
       "format": "date"
     },
-    "completed_date": {
+    "next_due": {
       "type": "string",
       "format": "date"
     },
-    "responsible_person": {
+    "assigned_to": {
       "type": "string"
     },
     "status": {
       "type": "string",
       "enum": [
-        "upcoming",
+        "compliant",
+        "pending",
         "overdue",
-        "completed",
-        "not_applicable"
+        "non_compliant"
       ],
-      "default": "upcoming"
-    },
-    "recurrence": {
-      "type": "string",
-      "enum": [
-        "one_off",
-        "monthly",
-        "quarterly",
-        "biannual",
-        "annual"
-      ],
-      "default": "annual"
-    },
-    "external_reference": {
-      "type": "string",
-      "description": "e.g. Charity Commission filing ref"
+      "default": "pending"
     },
     "evidence_url": {
       "type": "string"
     },
     "notes": {
       "type": "string"
-    },
-    "reminder_days_before": {
-      "type": "number",
-      "default": 30
     }
   },
   "required": [
+    "branch_id",
     "title",
-    "category",
-    "due_date"
+    "category"
   ]
 }

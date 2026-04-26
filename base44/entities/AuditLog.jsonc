@@ -2,13 +2,14 @@
   "name": "AuditLog",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "entity_type": {
-      "type": "string",
-      "description": "Entity that was changed (Job, Client, etc)"
+      "type": "string"
     },
     "entity_id": {
-      "type": "string",
-      "description": "ID of the entity"
+      "type": "string"
     },
     "action": {
       "type": "string",
@@ -17,16 +18,13 @@
         "updated",
         "deleted",
         "file_uploaded"
-      ],
-      "description": "What happened"
+      ]
     },
     "changed_by": {
-      "type": "string",
-      "description": "User email who made the change"
+      "type": "string"
     },
     "changes": {
-      "type": "string",
-      "description": "Summary of what changed"
+      "type": "string"
     },
     "timestamp": {
       "type": "string",
@@ -34,6 +32,7 @@
     }
   },
   "required": [
+    "branch_id",
     "entity_type",
     "entity_id",
     "action"

@@ -2,64 +2,60 @@
   "name": "WorkSchedule",
   "type": "object",
   "properties": {
-    "supplier_id": {
+    "branch_id": {
       "type": "string"
     },
-    "supplier_name": {
+    "staff_id": {
       "type": "string"
     },
-    "job_id": {
+    "staff_name": {
       "type": "string"
     },
-    "job_title": {
-      "type": "string"
-    },
-    "client_name": {
-      "type": "string"
-    },
-    "client_address": {
-      "type": "string"
-    },
-    "po_id": {
-      "type": "string"
-    },
-    "po_number": {
-      "type": "string"
-    },
-    "scheduled_date": {
+    "week_starting": {
       "type": "string",
       "format": "date"
     },
-    "scheduled_time": {
-      "type": "string"
-    },
-    "estimated_hours": {
-      "type": "number"
-    },
-    "actual_hours": {
-      "type": "number"
-    },
-    "description": {
-      "type": "string"
+    "shifts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "job_id": {
+            "type": "string"
+          }
+        }
+      }
     },
     "status": {
       "type": "string",
       "enum": [
-        "confirmed",
-        "in_progress",
-        "completed",
-        "cancelled",
-        "rescheduled"
+        "draft",
+        "published",
+        "locked"
       ],
-      "default": "confirmed"
+      "default": "draft"
     },
     "notes": {
       "type": "string"
     }
   },
   "required": [
-    "supplier_id",
-    "supplier_name",
-    "scheduled_date"
+    "branch_id",
+    "staff_id",
+    "staff_name",
+    "week_starting"
   ]
 }

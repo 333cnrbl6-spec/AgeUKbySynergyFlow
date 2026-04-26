@@ -2,6 +2,9 @@
   "name": "KindCreditsTransaction",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "wallet_id": {
       "type": "string"
     },
@@ -20,12 +23,10 @@
         "spent_reserve",
         "refunded",
         "admin_adjustment"
-      ],
-      "description": "Transaction type"
+      ]
     },
     "amount": {
-      "type": "number",
-      "description": "Positive = earned, negative = spent"
+      "type": "number"
     },
     "balance_after": {
       "type": "number"
@@ -40,11 +41,11 @@
       "type": "string"
     },
     "performed_by": {
-      "type": "string",
-      "description": "Staff name if admin action"
+      "type": "string"
     }
   },
   "required": [
+    "branch_id",
     "client_id",
     "client_name",
     "type",

@@ -2,111 +2,60 @@
   "name": "ServiceRequest",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "client_id": {
-      "type": "string",
-      "description": "Reference to Client"
+      "type": "string"
     },
     "client_name": {
-      "type": "string",
-      "description": "Client full name"
-    },
-    "client_phone": {
       "type": "string"
     },
-    "client_email": {
+    "service_type": {
       "type": "string"
-    },
-    "request_type": {
-      "type": "string",
-      "enum": [
-        "handyperson",
-        "foot_care",
-        "information",
-        "befriending",
-        "other"
-      ],
-      "default": "handyperson",
-      "description": "Type of service requested"
-    },
-    "job_category": {
-      "type": "string",
-      "enum": [
-        "handrails",
-        "security_locks",
-        "shelves",
-        "curtain_rails",
-        "wall_decorations",
-        "minor_plumbing",
-        "painting_decorating",
-        "light_bulbs",
-        "flat_pack",
-        "smoke_alarms",
-        "key_safes",
-        "draught_excluders",
-        "carpet_cleaning",
-        "minor_gardening",
-        "fence_painting",
-        "furniture_moving",
-        "other"
-      ],
-      "description": "Category for handyperson requests"
-    },
-    "title": {
-      "type": "string",
-      "description": "Brief description of the request"
     },
     "description": {
-      "type": "string",
-      "description": "Detailed description of what is needed"
-    },
-    "urgency": {
-      "type": "string",
-      "enum": [
-        "routine",
-        "soon",
-        "urgent"
-      ],
-      "default": "routine",
-      "description": "Urgency level"
-    },
-    "preferred_dates": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "format": "date"
-      },
-      "description": "Preferred dates for the work"
+      "type": "string"
     },
     "status": {
       "type": "string",
       "enum": [
-        "submitted",
-        "acknowledged",
+        "pending",
+        "approved",
         "in_progress",
         "completed",
         "declined"
       ],
-      "default": "submitted",
-      "description": "Request status"
+      "default": "pending"
     },
-    "submitted_date": {
+    "priority": {
       "type": "string",
-      "format": "date",
-      "description": "When the request was submitted"
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "medium"
     },
-    "staff_notes": {
+    "requested_date": {
       "type": "string",
-      "description": "Notes from staff"
+      "format": "date"
     },
-    "client_notes": {
+    "target_date": {
       "type": "string",
-      "description": "Additional notes from client"
+      "format": "date"
+    },
+    "assigned_to": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
     }
   },
   "required": [
+    "branch_id",
     "client_id",
     "client_name",
-    "title",
-    "request_type"
+    "service_type"
   ]
 }

@@ -2,26 +2,26 @@
   "name": "DataPartnershipTask",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "title": {
-      "type": "string",
-      "description": "Task title"
+      "type": "string"
     },
     "partner_name": {
-      "type": "string",
-      "description": "Name of the organization/partner"
+      "type": "string"
     },
     "data_source": {
       "type": "string",
       "enum": [
-        "bury_council_asc",
-        "nhs_bury_icb",
-        "gp_patient_data",
+        "council_asc",
+        "nhs",
+        "gp_data",
         "data_broker",
-        "council_housing",
+        "housing",
         "electoral_roll",
         "community_networks"
-      ],
-      "description": "Type of data source"
+      ]
     },
     "priority": {
       "type": "string",
@@ -45,8 +45,7 @@
       "default": "not_started"
     },
     "description": {
-      "type": "string",
-      "description": "What needs to be done"
+      "type": "string"
     },
     "key_contact_name": {
       "type": "string"
@@ -83,12 +82,10 @@
       }
     },
     "estimated_volume": {
-      "type": "string",
-      "description": "Expected number of records/month"
+      "type": "string"
     },
     "estimated_cost": {
-      "type": "number",
-      "description": "Annual cost in \u00a3"
+      "type": "number"
     },
     "expected_launch_date": {
       "type": "string",
@@ -101,11 +98,11 @@
       "type": "array",
       "items": {
         "type": "string"
-      },
-      "description": "URLs to agreement docs, templates, etc."
+      }
     }
   },
   "required": [
+    "branch_id",
     "title",
     "partner_name",
     "data_source"

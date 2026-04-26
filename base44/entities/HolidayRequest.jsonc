@@ -2,23 +2,22 @@
   "name": "HolidayRequest",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "staff_name": {
-      "type": "string",
-      "description": "Name of the staff member"
+      "type": "string"
     },
     "start_date": {
       "type": "string",
-      "format": "date",
-      "description": "First day of requested holiday"
+      "format": "date"
     },
     "end_date": {
       "type": "string",
-      "format": "date",
-      "description": "Last day of requested holiday"
+      "format": "date"
     },
     "reason": {
-      "type": "string",
-      "description": "Reason for holiday"
+      "type": "string"
     },
     "status": {
       "type": "string",
@@ -30,11 +29,11 @@
       "default": "pending"
     },
     "approved_by": {
-      "type": "string",
-      "description": "Staff member who approved"
+      "type": "string"
     }
   },
   "required": [
+    "branch_id",
     "staff_name",
     "start_date",
     "end_date"

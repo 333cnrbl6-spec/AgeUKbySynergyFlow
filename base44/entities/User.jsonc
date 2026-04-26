@@ -7,41 +7,18 @@
       "enum": [
         "admin",
         "manager",
-        "handyperson",
-        "activity_volunteer",
-        "befriending_coordinator",
-        "information_officer",
-        "facilities_coordinator",
-        "finance_officer"
+        "staff",
+        "user"
       ],
-      "default": "handyperson",
-      "description": "User role within Age UK Bury"
+      "default": "user",
+      "description": "User role in the system"
     },
-    "assigned_activities": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "Activity names this volunteer is responsible for (used for volunteers)"
-    },
-    "display_name": {
+    "branch_id": {
       "type": "string",
-      "description": "Preferred display name"
+      "description": "Branch this user belongs to"
     },
-    "phone": {
+    "branch_name": {
       "type": "string"
-    },
-    "department": {
-      "type": "string",
-      "enum": [
-        "handyperson_service",
-        "day_centre",
-        "befriending",
-        "information_advice",
-        "facilities",
-        "finance",
-        "management"
-      ]
     }
   }
 }

@@ -2,6 +2,9 @@
   "name": "SupplierLedger",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "supplier_id": {
       "type": "string"
     },
@@ -18,40 +21,24 @@
         "invoice",
         "payment",
         "credit_note",
-        "adjustment"
-      ],
-      "description": "Type of ledger entry"
+        "debit_note"
+      ]
     },
     "reference": {
-      "type": "string",
-      "description": "PO number, invoice ref, etc."
-    },
-    "description": {
       "type": "string"
     },
-    "debit": {
-      "type": "number",
-      "default": 0,
-      "description": "Amount owed to supplier (invoice/charge)"
-    },
-    "credit": {
-      "type": "number",
-      "default": 0,
-      "description": "Amount paid to supplier"
+    "amount": {
+      "type": "number"
     },
     "balance": {
-      "type": "number",
-      "default": 0,
-      "description": "Running balance"
+      "type": "number"
     },
-    "po_id": {
-      "type": "string"
-    },
-    "job_id": {
+    "notes": {
       "type": "string"
     }
   },
   "required": [
+    "branch_id",
     "supplier_id",
     "supplier_name",
     "transaction_date",

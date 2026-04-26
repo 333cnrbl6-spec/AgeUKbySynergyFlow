@@ -2,9 +2,11 @@
   "name": "Volunteer",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "name": {
-      "type": "string",
-      "description": "Full name"
+      "type": "string"
     },
     "email": {
       "type": "string"
@@ -13,23 +15,13 @@
       "type": "string"
     },
     "location": {
-      "type": "string",
-      "enum": [
-        "Bury",
-        "Ramsbottom",
-        "Tottington",
-        "Prestwich",
-        "Radcliffe",
-        "Whitefield"
-      ],
-      "description": "Area served"
+      "type": "string"
     },
     "skills": {
       "type": "array",
       "items": {
         "type": "string"
-      },
-      "description": "e.g. carpentry, plumbing, befriending"
+      }
     },
     "availability": {
       "type": "array",
@@ -37,16 +29,7 @@
         "type": "object",
         "properties": {
           "day_of_week": {
-            "type": "string",
-            "enum": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday"
-            ]
+            "type": "string"
           },
           "start_time": {
             "type": "string"
@@ -55,8 +38,7 @@
             "type": "string"
           }
         }
-      },
-      "description": "Weekly availability slots"
+      }
     },
     "experience_level": {
       "type": "string",
@@ -77,8 +59,7 @@
     },
     "engagement_score": {
       "type": "number",
-      "default": 0,
-      "description": "0-100 score based on activity"
+      "default": 0
     },
     "status": {
       "type": "string",
@@ -101,16 +82,15 @@
       "type": "array",
       "items": {
         "type": "string"
-      },
-      "description": "Types of work interested in"
+      }
     },
     "notes": {
       "type": "string"
     }
   },
   "required": [
+    "branch_id",
     "name",
-    "email",
-    "location"
+    "email"
   ]
 }

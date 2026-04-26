@@ -2,6 +2,9 @@
   "name": "AbsenceRecord",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "staff_id": {
       "type": "string"
     },
@@ -11,14 +14,12 @@
     "absence_type": {
       "type": "string",
       "enum": [
-        "sick",
-        "unauthorised",
+        "annual_leave",
+        "sick_leave",
         "compassionate_leave",
-        "unpaid_leave",
-        "maternity_paternity",
+        "training",
         "other"
-      ],
-      "default": "sick"
+      ]
     },
     "start_date": {
       "type": "string",
@@ -28,55 +29,31 @@
       "type": "string",
       "format": "date"
     },
-    "days": {
-      "type": "number",
-      "default": 1
-    },
     "reason": {
-      "type": "string"
-    },
-    "self_cert_submitted": {
-      "type": "boolean",
-      "default": false
-    },
-    "fit_note_required": {
-      "type": "boolean",
-      "default": false
-    },
-    "fit_note_received": {
-      "type": "boolean",
-      "default": false
-    },
-    "return_to_work_interview": {
-      "type": "boolean",
-      "default": false
-    },
-    "return_to_work_date": {
-      "type": "string",
-      "format": "date"
-    },
-    "bradford_instances": {
-      "type": "number",
-      "default": 1,
-      "description": "Number of separate absence spells this contributes"
-    },
-    "notes": {
       "type": "string"
     },
     "status": {
       "type": "string",
       "enum": [
-        "open",
-        "closed",
-        "under_review"
+        "pending",
+        "approved",
+        "rejected"
       ],
-      "default": "open"
+      "default": "pending"
+    },
+    "approved_by": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
     }
   },
   "required": [
+    "branch_id",
     "staff_id",
     "staff_name",
     "absence_type",
-    "start_date"
+    "start_date",
+    "end_date"
   ]
 }

@@ -2,28 +2,17 @@
   "name": "ClientBooking",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "client_id": {
-      "type": "string",
-      "description": "Reference to Client"
+      "type": "string"
     },
     "client_name": {
-      "type": "string",
-      "description": "Client full name for display"
-    },
-    "activity_type": {
-      "type": "string",
-      "enum": [
-        "day_centre",
-        "group_activity",
-        "class",
-        "event",
-        "one_off_session"
-      ],
-      "description": "Type of activity booked"
+      "type": "string"
     },
     "activity_name": {
-      "type": "string",
-      "description": "Name of the activity"
+      "type": "string"
     },
     "facility_id": {
       "type": "string"
@@ -31,44 +20,43 @@
     "facility_name": {
       "type": "string"
     },
-    "scheduled_date": {
-      "type": "string",
-      "format": "date",
-      "description": "Date of the activity"
-    },
-    "start_time": {
-      "type": "string",
-      "description": "Start time (HH:MM)"
-    },
-    "end_time": {
-      "type": "string",
-      "description": "End time (HH:MM)"
-    },
     "booking_date": {
       "type": "string",
-      "format": "date",
-      "description": "When the client made the booking"
+      "format": "date"
+    },
+    "start_time": {
+      "type": "string"
+    },
+    "end_time": {
+      "type": "string"
     },
     "status": {
       "type": "string",
       "enum": [
+        "pending",
         "confirmed",
         "cancelled",
-        "completed",
+        "attended",
         "no_show"
       ],
-      "default": "confirmed",
-      "description": "Booking status"
+      "default": "pending"
+    },
+    "transportation_required": {
+      "type": "boolean",
+      "default": false
+    },
+    "special_requirements": {
+      "type": "string"
     },
     "notes": {
-      "type": "string",
-      "description": "Any special requirements or notes"
+      "type": "string"
     }
   },
   "required": [
+    "branch_id",
     "client_id",
     "client_name",
     "activity_name",
-    "scheduled_date"
+    "booking_date"
   ]
 }

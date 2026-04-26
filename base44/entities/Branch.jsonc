@@ -1,0 +1,56 @@
+{
+  "name": "Branch",
+  "type": "object",
+  "properties": {
+    "branch_name": {
+      "type": "string",
+      "description": "Display name e.g. Age UK Bury, Age UK Bolton"
+    },
+    "branch_code": {
+      "type": "string",
+      "description": "Unique branch identifier e.g. bury, bolton"
+    },
+    "region": {
+      "type": "string",
+      "description": "Geographic region"
+    },
+    "address": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "manager_name": {
+      "type": "string"
+    },
+    "manager_email": {
+      "type": "string"
+    },
+    "logo_url": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "setup"
+      ],
+      "default": "setup"
+    },
+    "established_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "branch_name",
+    "branch_code"
+  ]
+}

@@ -2,69 +2,39 @@
   "name": "TimesheetEntry",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "staff_id": {
       "type": "string"
     },
     "staff_name": {
       "type": "string"
     },
-    "pay_period_id": {
-      "type": "string"
-    },
     "date": {
       "type": "string",
       "format": "date"
     },
-    "entry_type": {
-      "type": "string",
-      "enum": [
-        "work",
-        "holiday",
-        "sick",
-        "bank_holiday",
-        "unpaid_leave",
-        "compassionate_leave",
-        "maternity_paternity",
-        "toil",
-        "other_absence"
-      ],
-      "default": "work"
-    },
     "start_time": {
-      "type": "string",
-      "description": "e.g. 09:00"
+      "type": "string"
     },
     "end_time": {
       "type": "string"
     },
-    "break_minutes": {
-      "type": "number",
-      "default": 30
-    },
     "hours_worked": {
-      "type": "number",
-      "default": 0
-    },
-    "overtime_hours": {
-      "type": "number",
-      "default": 0
-    },
-    "hourly_rate": {
       "type": "number"
     },
-    "gross_pay": {
-      "type": "number",
-      "default": 0
+    "break_duration": {
+      "type": "number"
+    },
+    "activity": {
+      "type": "string"
+    },
+    "job_id": {
+      "type": "string"
     },
     "notes": {
       "type": "string"
-    },
-    "approved_by": {
-      "type": "string"
-    },
-    "approved_date": {
-      "type": "string",
-      "format": "date"
     },
     "status": {
       "type": "string",
@@ -75,27 +45,12 @@
         "rejected"
       ],
       "default": "draft"
-    },
-    "absence_reason": {
-      "type": "string"
-    },
-    "self_cert_submitted": {
-      "type": "boolean",
-      "default": false
-    },
-    "fit_note_required": {
-      "type": "boolean",
-      "default": false
-    },
-    "fit_note_received": {
-      "type": "boolean",
-      "default": false
     }
   },
   "required": [
+    "branch_id",
     "staff_id",
     "staff_name",
-    "date",
-    "entry_type"
+    "date"
   ]
 }

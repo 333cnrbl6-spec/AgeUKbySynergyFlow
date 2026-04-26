@@ -2,7 +2,7 @@
   "name": "MaintenanceRequest",
   "type": "object",
   "properties": {
-    "title": {
+    "branch_id": {
       "type": "string"
     },
     "facility_id": {
@@ -11,28 +11,11 @@
     "facility_name": {
       "type": "string"
     },
-    "asset_id": {
-      "type": "string",
-      "description": "Related asset if applicable"
-    },
-    "asset_name": {
+    "issue_type": {
       "type": "string"
     },
-    "category": {
-      "type": "string",
-      "enum": [
-        "plumbing",
-        "electrical",
-        "heating_cooling",
-        "structural",
-        "cleaning",
-        "equipment_repair",
-        "decoration",
-        "grounds",
-        "it",
-        "security",
-        "other"
-      ]
+    "description": {
+      "type": "string"
     },
     "priority": {
       "type": "string",
@@ -40,59 +23,39 @@
         "low",
         "medium",
         "high",
-        "urgent"
+        "emergency"
       ],
       "default": "medium"
+    },
+    "reported_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "assigned_to": {
+      "type": "string"
     },
     "status": {
       "type": "string",
       "enum": [
-        "reported",
-        "assessed",
-        "scheduled",
+        "pending",
         "in_progress",
         "completed",
-        "cancelled"
+        "on_hold"
       ],
-      "default": "reported"
+      "default": "pending"
     },
-    "description": {
-      "type": "string"
-    },
-    "reported_by": {
-      "type": "string"
-    },
-    "assigned_to": {
-      "type": "string",
-      "description": "Staff or supplier name"
-    },
-    "supplier_id": {
-      "type": "string"
-    },
-    "scheduled_date": {
+    "completion_date": {
       "type": "string",
       "format": "date"
-    },
-    "completed_date": {
-      "type": "string",
-      "format": "date"
-    },
-    "estimated_cost": {
-      "type": "number"
-    },
-    "actual_cost": {
-      "type": "number"
-    },
-    "po_id": {
-      "type": "string"
     },
     "notes": {
       "type": "string"
     }
   },
   "required": [
-    "title",
+    "branch_id",
     "facility_id",
-    "category"
+    "facility_name",
+    "issue_type"
   ]
 }

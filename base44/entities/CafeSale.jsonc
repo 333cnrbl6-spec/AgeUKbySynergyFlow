@@ -2,34 +2,25 @@
   "name": "CafeSale",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "sale_date": {
       "type": "string",
       "format": "date"
     },
-    "till_session": {
-      "type": "string",
-      "enum": [
-        "morning",
-        "afternoon",
-        "all_day"
-      ],
-      "default": "all_day"
-    },
-    "items_sold": {
+    "items": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "item": {
-            "type": "string"
-          },
-          "category": {
+          "item_name": {
             "type": "string"
           },
           "quantity": {
             "type": "number"
           },
-          "unit_price": {
+          "price": {
             "type": "number"
           },
           "total": {
@@ -38,23 +29,18 @@
         }
       }
     },
-    "gross_takings": {
-      "type": "number",
-      "default": 0
+    "total_amount": {
+      "type": "number"
     },
-    "cash_takings": {
-      "type": "number",
-      "default": 0
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "cash",
+        "card",
+        "kind_credits"
+      ]
     },
-    "card_takings": {
-      "type": "number",
-      "default": 0
-    },
-    "covers": {
-      "type": "number",
-      "description": "Number of customers served"
-    },
-    "staff_on_duty": {
+    "staff_name": {
       "type": "string"
     },
     "notes": {
@@ -62,6 +48,8 @@
     }
   },
   "required": [
-    "sale_date"
+    "branch_id",
+    "sale_date",
+    "total_amount"
   ]
 }

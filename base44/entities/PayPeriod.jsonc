@@ -2,30 +2,23 @@
   "name": "PayPeriod",
   "type": "object",
   "properties": {
-    "label": {
-      "type": "string",
-      "description": "e.g. April 2026"
+    "branch_id": {
+      "type": "string"
     },
-    "period_start": {
+    "period_name": {
+      "type": "string"
+    },
+    "start_date": {
       "type": "string",
       "format": "date"
     },
-    "period_end": {
+    "end_date": {
       "type": "string",
       "format": "date"
     },
     "pay_date": {
       "type": "string",
       "format": "date"
-    },
-    "frequency": {
-      "type": "string",
-      "enum": [
-        "weekly",
-        "fortnightly",
-        "monthly"
-      ],
-      "default": "monthly"
     },
     "status": {
       "type": "string",
@@ -41,8 +34,9 @@
     }
   },
   "required": [
-    "label",
-    "period_start",
-    "period_end"
+    "branch_id",
+    "period_name",
+    "start_date",
+    "end_date"
   ]
 }

@@ -2,6 +2,9 @@
   "name": "PartnerInteraction",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "partner_id": {
       "type": "string"
     },
@@ -14,10 +17,8 @@
         "meeting",
         "phone_call",
         "email",
-        "report_submitted",
-        "contract_review",
-        "site_visit",
         "event",
+        "review",
         "other"
       ]
     },
@@ -25,25 +26,19 @@
       "type": "string",
       "format": "date"
     },
-    "attendees": {
+    "notes": {
       "type": "string"
     },
-    "summary": {
+    "action_items": {
       "type": "string"
     },
-    "actions": {
-      "type": "string",
-      "description": "Action points arising"
-    },
-    "next_steps": {
-      "type": "string"
-    },
-    "follow_up_date": {
+    "next_meeting_date": {
       "type": "string",
       "format": "date"
     }
   },
   "required": [
+    "branch_id",
     "partner_id",
     "partner_name",
     "interaction_type",

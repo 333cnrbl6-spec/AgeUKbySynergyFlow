@@ -2,34 +2,30 @@
   "name": "SessionAttendance",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "activity_name": {
-      "type": "string",
-      "description": "Name of the activity/session"
+      "type": "string"
     },
     "session_date": {
       "type": "string",
-      "format": "date",
-      "description": "Date of the session"
+      "format": "date"
     },
     "session_start_time": {
-      "type": "string",
-      "description": "Start time e.g. 10:00"
+      "type": "string"
     },
     "session_end_time": {
-      "type": "string",
-      "description": "End time e.g. 12:00"
+      "type": "string"
     },
     "facility_name": {
-      "type": "string",
-      "description": "Where the session took place"
+      "type": "string"
     },
     "volunteer_name": {
-      "type": "string",
-      "description": "Name of the volunteer running the session"
+      "type": "string"
     },
     "volunteer_id": {
-      "type": "string",
-      "description": "User ID of the volunteer"
+      "type": "string"
     },
     "attendees": {
       "type": "array",
@@ -49,40 +45,32 @@
               "no_show",
               "cancelled",
               "late"
-            ],
-            "default": "attended"
+            ]
           },
           "notes": {
             "type": "string"
           }
         }
-      },
-      "description": "List of clients and their attendance status"
+      }
     },
     "total_expected": {
-      "type": "number",
-      "description": "Number of clients expected"
+      "type": "number"
     },
     "total_attended": {
-      "type": "number",
-      "description": "Number of clients who attended"
+      "type": "number"
     },
     "session_notes": {
-      "type": "string",
-      "description": "General notes about the session"
+      "type": "string"
     },
     "session_theme": {
-      "type": "string",
-      "description": "Topic or theme for the session (optional)"
+      "type": "string"
     },
     "incidents": {
-      "type": "string",
-      "description": "Any incidents or safeguarding concerns to note"
+      "type": "string"
     },
     "weather_impact": {
       "type": "boolean",
-      "default": false,
-      "description": "Was attendance affected by weather?"
+      "default": false
     },
     "status": {
       "type": "string",
@@ -96,6 +84,7 @@
     }
   },
   "required": [
+    "branch_id",
     "activity_name",
     "session_date",
     "volunteer_name"

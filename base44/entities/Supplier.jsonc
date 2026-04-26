@@ -2,13 +2,14 @@
   "name": "Supplier",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "company_name": {
-      "type": "string",
-      "description": "Company or trading name"
+      "type": "string"
     },
     "contact_name": {
-      "type": "string",
-      "description": "Primary contact person"
+      "type": "string"
     },
     "supplier_type": {
       "type": "string",
@@ -18,15 +19,13 @@
         "materials_supplier",
         "specialist_contractor",
         "other"
-      ],
-      "description": "Type of supplier"
+      ]
     },
     "skills": {
       "type": "array",
       "items": {
         "type": "string"
-      },
-      "description": "Skills/trades offered"
+      }
     },
     "phone": {
       "type": "string"
@@ -106,11 +105,11 @@
     },
     "current_balance": {
       "type": "number",
-      "default": 0,
-      "description": "Outstanding balance owed to supplier"
+      "default": 0
     }
   },
   "required": [
+    "branch_id",
     "company_name",
     "supplier_type"
   ]

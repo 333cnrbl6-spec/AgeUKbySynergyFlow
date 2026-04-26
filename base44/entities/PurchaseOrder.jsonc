@@ -2,9 +2,11 @@
   "name": "PurchaseOrder",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "po_number": {
-      "type": "string",
-      "description": "Purchase order reference number"
+      "type": "string"
     },
     "supplier_id": {
       "type": "string"
@@ -12,47 +14,11 @@
     "supplier_name": {
       "type": "string"
     },
-    "job_id": {
-      "type": "string",
-      "description": "Related job (optional)"
-    },
-    "job_title": {
-      "type": "string"
-    },
-    "client_name": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string",
-      "description": "Work or goods description"
-    },
-    "status": {
-      "type": "string",
-      "enum": [
-        "draft",
-        "sent",
-        "acknowledged",
-        "in_progress",
-        "completed",
-        "invoiced",
-        "paid",
-        "cancelled"
-      ],
-      "default": "draft"
-    },
-    "issue_date": {
+    "order_date": {
       "type": "string",
       "format": "date"
     },
-    "required_by": {
-      "type": "string",
-      "format": "date"
-    },
-    "completed_date": {
-      "type": "string",
-      "format": "date"
-    },
-    "line_items": {
+    "items": {
       "type": "array",
       "items": {
         "type": "object",
@@ -72,56 +38,37 @@
         }
       }
     },
-    "net_amount": {
-      "type": "number",
-      "default": 0
-    },
-    "vat_amount": {
-      "type": "number",
-      "default": 0
-    },
     "total_amount": {
-      "type": "number",
-      "default": 0
+      "type": "number"
     },
-    "payment_status": {
+    "status": {
       "type": "string",
       "enum": [
-        "unpaid",
-        "partial",
+        "pending",
+        "confirmed",
+        "received",
+        "invoiced",
         "paid"
       ],
-      "default": "unpaid"
+      "default": "pending"
     },
-    "payment_date": {
+    "expected_delivery": {
       "type": "string",
       "format": "date"
     },
-    "payment_method": {
+    "actual_delivery": {
       "type": "string",
-      "enum": [
-        "bacs",
-        "cheque",
-        "cash",
-        "card"
-      ],
-      "default": "bacs"
-    },
-    "amount_paid": {
-      "type": "number",
-      "default": 0
-    },
-    "invoice_reference": {
-      "type": "string",
-      "description": "Supplier's invoice number"
+      "format": "date"
     },
     "notes": {
       "type": "string"
     }
   },
   "required": [
+    "branch_id",
+    "po_number",
     "supplier_id",
     "supplier_name",
-    "description"
+    "order_date"
   ]
 }

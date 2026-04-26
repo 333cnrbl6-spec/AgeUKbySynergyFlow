@@ -2,13 +2,14 @@
   "name": "Prospect",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "first_name": {
-      "type": "string",
-      "description": "Prospect's first name"
+      "type": "string"
     },
     "last_name": {
-      "type": "string",
-      "description": "Prospect's last name"
+      "type": "string"
     },
     "phone": {
       "type": "string"
@@ -23,16 +24,7 @@
       "type": "string"
     },
     "town": {
-      "type": "string",
-      "enum": [
-        "Bury",
-        "Ramsbottom",
-        "Tottington",
-        "Prestwich",
-        "Radcliffe",
-        "Whitefield"
-      ],
-      "description": "Must be in Age UK Bury catchment area"
+      "type": "string"
     },
     "postcode": {
       "type": "string"
@@ -50,12 +42,10 @@
         "event",
         "referral_partner",
         "other"
-      ],
-      "description": "Where the prospect came from"
+      ]
     },
     "source_reference": {
-      "type": "string",
-      "description": "e.g. NHS list ID, council reference"
+      "type": "string"
     },
     "estimated_age_group": {
       "type": "string",
@@ -71,8 +61,7 @@
       "type": "array",
       "items": {
         "type": "string"
-      },
-      "description": "e.g. handyperson, befriending, information, mobility, dementia"
+      }
     },
     "contact_status": {
       "type": "string",
@@ -103,11 +92,11 @@
       "type": "string"
     },
     "converted_client_id": {
-      "type": "string",
-      "description": "Link to Client record if converted"
+      "type": "string"
     }
   },
   "required": [
+    "branch_id",
     "first_name",
     "last_name",
     "town"

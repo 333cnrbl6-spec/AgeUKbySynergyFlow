@@ -2,18 +2,20 @@
   "name": "Partner",
   "type": "object",
   "properties": {
+    "branch_id": {
+      "type": "string"
+    },
     "organisation_name": {
       "type": "string"
     },
     "partner_type": {
       "type": "string",
       "enum": [
-        "bolton_council",
-        "nhs_icb",
+        "council",
+        "nhs",
         "gp_federation",
         "hospital",
         "age_uk_national",
-        "age_uk_gm",
         "housing",
         "police_fire",
         "voluntary_sector",
@@ -111,6 +113,7 @@
     }
   },
   "required": [
+    "branch_id",
     "organisation_name",
     "partner_type"
   ]

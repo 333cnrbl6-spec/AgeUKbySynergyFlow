@@ -2,40 +2,30 @@
   "name": "Client",
   "type": "object",
   "properties": {
-    "first_name": {
+    "branch_id": {
       "type": "string",
-      "description": "Client's first name"
+      "description": "Branch this client belongs to"
+    },
+    "first_name": {
+      "type": "string"
     },
     "last_name": {
-      "type": "string",
-      "description": "Client's last name"
+      "type": "string"
     },
     "phone": {
-      "type": "string",
-      "description": "Primary phone number"
+      "type": "string"
     },
     "email": {
-      "type": "string",
-      "description": "Email address"
+      "type": "string"
     },
     "address_line_1": {
-      "type": "string",
-      "description": "Street address"
+      "type": "string"
     },
     "address_line_2": {
       "type": "string"
     },
     "town": {
-      "type": "string",
-      "description": "Town/area within Bury borough",
-      "enum": [
-        "Bury",
-        "Ramsbottom",
-        "Tottington",
-        "Prestwich",
-        "Radcliffe",
-        "Whitefield"
-      ]
+      "type": "string"
     },
     "postcode": {
       "type": "string"
@@ -45,8 +35,7 @@
       "format": "date"
     },
     "notes": {
-      "type": "string",
-      "description": "General notes about the client"
+      "type": "string"
     },
     "referral_source": {
       "type": "string",
@@ -58,8 +47,7 @@
         "family_friend",
         "age_uk_service",
         "other"
-      ],
-      "description": "How the client found us"
+      ]
     },
     "status": {
       "type": "string",
@@ -71,8 +59,7 @@
     },
     "dementia_related": {
       "type": "boolean",
-      "default": false,
-      "description": "Has dementia or dementia-related support needs"
+      "default": false
     },
     "isolation_level": {
       "type": "string",
@@ -82,15 +69,13 @@
         "isolated",
         "unknown"
       ],
-      "default": "unknown",
-      "description": "Assessment of social isolation risk"
+      "default": "unknown"
     },
     "support_needs": {
       "type": "array",
       "items": {
         "type": "string"
-      },
-      "description": "Identified support needs (e.g., handyperson, befriending, day centre)"
+      }
     },
     "referral_history": {
       "type": "array",
@@ -98,67 +83,36 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": "Unique referral ID"
+            "type": "string"
           },
           "service_type": {
-            "type": "string",
-            "enum": [
-              "befriending",
-              "day_centre",
-              "activities",
-              "home_help",
-              "foot_care",
-              "it_training",
-              "health_referral",
-              "other"
-            ],
-            "description": "Type of service referred to"
+            "type": "string"
           },
           "trigger_event": {
-            "type": "string",
-            "description": "What triggered the referral"
+            "type": "string"
           },
           "referred_date": {
             "type": "string",
-            "format": "date",
-            "description": "Date referral was made"
+            "format": "date"
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "accepted",
-              "in_progress",
-              "completed",
-              "declined",
-              "withdrawn"
-            ],
-            "default": "pending",
-            "description": "Referral status"
+            "type": "string"
           },
           "referred_by": {
-            "type": "string",
-            "description": "Staff member or system that made referral"
+            "type": "string"
           },
           "outcome": {
-            "type": "string",
-            "description": "Outcome of referral"
+            "type": "string"
           },
           "notes": {
-            "type": "string",
-            "description": "Additional notes"
+            "type": "string"
           }
-        },
-        "required": [
-          "service_type",
-          "referred_date"
-        ]
-      },
-      "description": "History of referrals made for this client"
+        }
+      }
     }
   },
   "required": [
+    "branch_id",
     "first_name",
     "last_name",
     "phone"
