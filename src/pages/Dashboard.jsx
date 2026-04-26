@@ -1,7 +1,7 @@
 import React from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import { Wrench, Users, PoundSterling, Clock, CalendarDays, Building2, Phone } from "lucide-react";
+import { Wrench, Users, PoundSterling, Clock, CalendarDays, AlertCircle } from "lucide-react";
 import StatCard from "../components/dashboard/StatCard";
 import RecentJobsList from "../components/dashboard/RecentJobsList";
 import RevenueChart from "../components/dashboard/RevenueChart";
@@ -11,7 +11,9 @@ import DataPartnershipWidget from "../components/dashboard/DataPartnershipWidget
 import ActivityWidget from "../components/dashboard/ActivityWidget";
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
+import { useBranch } from "@/lib/BranchContext";
 
 const EVENT_DOT = {
   job:      { colour: "bg-indigo-500",  label: "Job" },
@@ -21,14 +23,15 @@ const EVENT_DOT = {
 };
 
 export default function Dashboard() {
+  const { currentBranch, isInitialized, error: branchError } = useBranch();
   const todayStr = format(new Date(), "yyyy-MM-dd");
   const today = format(new Date(), "EEEE, d MMMM yyyy");
 
-  const { data: jobs = [] }          = useQuery({ queryKey: ["jobs"],          queryFn: () => base44.entities.Job.list("-created_date", 100) });
-  const { data: clients = [] }       = useQuery({ queryKey: ["clients"],       queryFn: () => base44.entities.Client.list("-created_date", 100) });
-  const { data: bookings = [] }      = useQuery({ queryKey: ["bookings"],      queryFn: () => base44.entities.RoomBooking.list("-date", 200) });
-  const { data: workSchedules = [] } = useQuery({ queryKey: ["workSchedules"], queryFn: () => base44.entities.WorkSchedule.list("-scheduled_date", 200) });
-  const { data: referrals = [] }     = useQuery({ queryKey: ["referrals"],     queryFn: () => base44.entities.Referral.list("-received_date", 200) });
+  const { data: jobs = [], isLoading: jobsLoading, error: jobsError }       = useQuery({ queryKey: ["jobs", currentBranch], queryFn: () => currentBranch ? base44.entities.Job.filter({ branch_id: currentBranch }, "-created_date", 100) : [], enabled: !!currentBranch });
+  const { data: clients = [], isLoading: clientsLoading, error: clientsError } = useQuery({ queryKey: ["clients", currentBranch], queryFn: () => currentBranch ? base44.entities.Client.filter({ branch_id: currentBranch }, "-created_date", 100) : [], enabled: !!currentBranch });
+  const { data: bookings = [], isLoading: bookingsLoading }      = useQuery({ queryKey: ["bookings", currentBranch], queryFn: () => currentBranch ? base44.entities.RoomBooking.filter({ branch_id: currentBranch }, "-date", 200) : [], enabled: !!currentBranch });
+  const { data: workSchedules = [], isLoading: workSchedulesLoading } = useQuery({ queryKey: ["workSchedules", currentBranch], queryFn: () => currentBranch ? base44.entities.WorkSchedule.filter({ branch_id: currentBranch }, "-scheduled_date", 200) : [], enabled: !!currentBranch });
+  const { data: referrals = [], isLoading: referralsLoading }     = useQuery({ queryKey: ["referrals", currentBranch], queryFn: () => currentBranch ? base44.entities.Referral.filter({ branch_id: currentBranch }, "-received_date", 200) : [], enabled: !!currentBranch });
 
   // Stats
   const activeJobs = jobs.filter(j => !["paid", "cancelled", "referred_out"].includes(j.status));
@@ -61,21 +64,73 @@ export default function Dashboard() {
     return a.time.localeCompare(b.time);
   });
 
+  // Guard: Wait for branch initialization
+  if (!isInitialized) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto"></div>
+          <p className="mt-3 text-sm text-muted-foreground">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Guard: Handle branch initialization errors
+  if (branchError) {
+    return (
+      <Alert variant="destructive" className="max-w-2xl">
+        <AlertCircle className="w-4 h-4" />
+        <AlertDescription>
+          <strong>Branch Error:</strong> {branchError}
+        </AlertDescription>
+      </Alert>
+    );
+  }
+
+  // Guard: Check for query errors
+  const hasQueryError = jobsError || clientsError;
+  const isLoading = jobsLoading || clientsLoading || bookingsLoading || workSchedulesLoading || referralsLoading;
+
   return (
     <div className="space-y-6 max-w-7xl">
+      {/* Branch Safety Check */}
+      {!currentBranch && (
+        <Alert variant="destructive">
+          <AlertCircle className="w-4 h-4" />
+          <AlertDescription>No branch selected. Contact your administrator.</AlertDescription>
+        </Alert>
+      )}
+
+      {/* Data Loading Errors */}
+      {hasQueryError && (
+        <Alert variant="destructive">
+          <AlertCircle className="w-4 h-4" />
+          <AlertDescription>Failed to load some dashboard data. Please refresh the page.</AlertDescription>
+        </Alert>
+      )}
+
       {/* Header */}
       <div>
         <h1 className="text-2xl lg:text-3xl font-heading font-bold">Good morning</h1>
         <p className="text-muted-foreground mt-1">{today}</p>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard title="Active Jobs" value={activeJobs.length} subtitle={`${completedThisMonth.length} completed this month`} icon={Wrench} />
-        <StatCard title="Total Clients" value={clients.length} subtitle="Registered clients" icon={Users} />
-        <StatCard title="Revenue" value={`£${totalRevenue.toFixed(2)}`} subtitle="Total collected" icon={PoundSterling} />
-        <StatCard title="Awaiting Payment" value={unpaidJobs.length} subtitle={`£${unpaidJobs.reduce((s, j) => s + (j.total_cost || 0), 0).toFixed(2)} outstanding`} icon={Clock} />
-      </div>
+      {/* Stats - with loading skeleton */}
+      {isLoading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="h-24 bg-muted rounded-lg animate-pulse" />
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatCard title="Active Jobs" value={activeJobs.length} subtitle={`${completedThisMonth.length} completed this month`} icon={Wrench} />
+          <StatCard title="Total Clients" value={clients.length} subtitle="Registered clients" icon={Users} />
+          <StatCard title="Revenue" value={`£${totalRevenue.toFixed(2)}`} subtitle="Total collected" icon={PoundSterling} />
+          <StatCard title="Awaiting Payment" value={unpaidJobs.length} subtitle={`£${unpaidJobs.reduce((s, j) => s + (j.total_cost || 0), 0).toFixed(2)} outstanding`} icon={Clock} />
+        </div>
+      )}
 
       {/* Main grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

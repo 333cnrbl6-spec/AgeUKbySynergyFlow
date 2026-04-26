@@ -65,10 +65,21 @@ export default function BuryAssistCSVImporter() {
   const [customMapping, setCustomMapping] = useState({});
 
   const parseCSV = (text) => {
-    const lines = text.trim().split('\n');
-    const headers = lines[0].split(',').map(h => h.trim());
-    const rows = [];
+    if (!text || typeof text !== 'string') {
+      throw new Error('Invalid CSV file content');
+    }
 
+    const lines = text.trim().split('\n').filter(line => line.trim());
+    if (lines.length < 2) {
+      throw new Error('CSV file is empty or has no data rows');
+    }
+
+    const headers = lines[0].split(',').map(h => h.trim());
+    if (headers.length === 0) {
+      throw new Error('CSV header row is empty');
+    }
+
+    const rows = [];
     for (let i = 1; i < lines.length; i++) {
       const row = {};
       const values = lines[i].split(',').map(v => v.trim());
@@ -77,6 +88,7 @@ export default function BuryAssistCSVImporter() {
       });
       rows.push(row);
     }
+    
     return { headers, rows };
   };
 
@@ -111,6 +123,19 @@ export default function BuryAssistCSVImporter() {
     const uploadedFile = e.target.files[0];
     if (!uploadedFile) return;
 
+    // Validate file type
+    if (!uploadedFile.name.endsWith('.csv')) {
+      setErrors([{ error: 'File must be a CSV (.csv)' }]);
+      return;
+    }
+
+    // Validate file size (5MB max)
+    const maxSize = 5 * 1024 * 1024;
+    if (uploadedFile.size > maxSize) {
+      setErrors([{ error: `File is too large (${(uploadedFile.size / 1024 / 1024).toFixed(2)}MB). Maximum 5MB.` }]);
+      return;
+    }
+
     setFile(uploadedFile);
     setErrors([]);
     setPreview([]);
@@ -120,31 +145,45 @@ export default function BuryAssistCSVImporter() {
       const text = await uploadedFile.text();
       const { headers, rows } = parseCSV(text);
 
+      // Validate branch assigned
+      if (!currentBranch) {
+        throw new Error('No branch assigned. Contact your administrator.');
+      }
+
       // Validate headers exist
       const mapping = FIELD_MAPPING[entityType];
       const availableFields = Object.keys(mapping).filter(f => headers.includes(f));
 
       if (availableFields.length === 0) {
-        throw new Error(`No recognized BuryAssist fields found in CSV. Expected: ${Object.keys(mapping).join(', ')}`);
+        throw new Error(`No recognized BuryAssist fields found. Expected: ${Object.keys(mapping).slice(0, 3).join(', ')}...`);
       }
 
-      // Validate & preview rows
+      // Limit preview to 10 rows, validate all rows in background
       const previewData = [];
       const rowErrors = [];
+      let validRowCount = 0;
 
-      rows.slice(0, 10).forEach((row, idx) => {
+      rows.forEach((row, idx) => {
         const validationErrors = validateRow(row, headers);
         if (validationErrors.length > 0) {
           rowErrors.push({ row: idx + 2, errors: validationErrors });
         } else {
-          previewData.push(mapRow(row));
+          validRowCount++;
+          if (previewData.length < 10) {
+            previewData.push(mapRow(row));
+          }
         }
       });
 
       setPreview(previewData);
       setErrors(rowErrors);
+
+      if (validRowCount === 0) {
+        setErrors([...rowErrors, { error: 'No valid rows found in CSV' }]);
+      }
     } catch (error) {
-      setErrors([{ error: error.message }]);
+      setErrors([{ error: error?.message || 'Failed to parse CSV file' }]);
+      setFile(null);
     } finally {
       setIsLoading(false);
     }
@@ -153,10 +192,27 @@ export default function BuryAssistCSVImporter() {
   const handleImport = async () => {
     if (preview.length === 0) return;
 
+    // Final validation
+    if (!currentBranch) {
+      setErrors([{ error: 'No branch assigned. Cannot import data.' }]);
+      return;
+    }
+
     setIsLoading(true);
     try {
       const entityName = entityType.charAt(0).toUpperCase() + entityType.slice(1, -1); // clients → Client
+      
+      // Validate entity exists
+      if (!base44.entities[entityName]) {
+        throw new Error(`Entity ${entityName} not found`);
+      }
+
+      // Perform bulk create with error handling
       const results = await base44.entities[entityName].bulkCreate(preview);
+      
+      if (!results || results.length === 0) {
+        throw new Error('Import returned no results');
+      }
 
       setImportSuccess({
         total: preview.length,
@@ -164,12 +220,17 @@ export default function BuryAssistCSVImporter() {
         timestamp: new Date().toLocaleString()
       });
 
-      // Reset
-      setFile(null);
-      setPreview([]);
-      setErrors([]);
+      // Reset state after 3 seconds
+      setTimeout(() => {
+        setFile(null);
+        setPreview([]);
+        setErrors([]);
+        setImportSuccess(null);
+      }, 3000);
     } catch (error) {
-      setErrors([{ error: `Import failed: ${error.message}` }]);
+      const msg = error?.message || 'Unknown import error';
+      console.error('[BuryAssistCSVImporter] Import failed:', msg);
+      setErrors([{ error: `Import failed: ${msg}` }]);
     } finally {
       setIsLoading(false);
     }

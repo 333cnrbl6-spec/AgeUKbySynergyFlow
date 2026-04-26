@@ -7,19 +7,29 @@ export const BranchProvider = ({ children }) => {
   const [currentBranch, setCurrentBranch] = useState(null);
   const [branches, setBranches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const initBranch = async () => {
       try {
         const user = await base44.auth.me();
-        if (user?.branch_id) {
-          setCurrentBranch(user.branch_id);
+        
+        // Validate user has branch assignment
+        if (!user?.branch_id) {
+          throw new Error('User has no branch assigned. Contact your administrator.');
         }
-        // Fetch available branches for admins/managers
-        const allBranches = await base44.entities.Branch.list();
-        setBranches(allBranches);
-      } catch (error) {
-        console.error('Branch initialization error:', error);
+
+        setCurrentBranch(user.branch_id);
+        
+        // Fetch available branches for branch switching (admins/managers only)
+        if (user?.role === 'admin' || user?.role === 'manager') {
+          const allBranches = await base44.entities.Branch.filter({ branch_id: user.branch_id });
+          setBranches(allBranches || []);
+        }
+      } catch (err) {
+        const msg = err?.message || 'Failed to initialize branch context';
+        console.error('[BranchContext]', msg, err);
+        setError(msg);
       } finally {
         setLoading(false);
       }
@@ -29,16 +39,22 @@ export const BranchProvider = ({ children }) => {
   }, []);
 
   const switchBranch = (branchId) => {
+    if (!branchId || typeof branchId !== 'string') {
+      console.warn('[BranchContext] Invalid branch ID:', branchId);
+      return;
+    }
     setCurrentBranch(branchId);
-    // Save to localStorage for persistence
-    localStorage.setItem('selectedBranch', branchId);
+    // Persist to sessionStorage (not localStorage for security)
+    sessionStorage.setItem('selectedBranch', branchId);
   };
 
   const value = {
-    currentBranch,
-    branches,
+    currentBranch: currentBranch || null,
+    branches: branches || [],
     loading,
-    switchBranch
+    error,
+    switchBranch,
+    isInitialized: !loading && currentBranch !== null
   };
 
   return (
@@ -53,5 +69,11 @@ export const useBranch = () => {
   if (!context) {
     throw new Error('useBranch must be used within BranchProvider');
   }
+  
+  // Warn if branch not initialized or has errors
+  if (context.error) {
+    console.error('[useBranch] Context error:', context.error);
+  }
+  
   return context;
 };
