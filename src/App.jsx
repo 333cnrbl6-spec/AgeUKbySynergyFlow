@@ -44,6 +44,7 @@ import Volunteers from './pages/Volunteers';
 import ReportGeneratorPage from './pages/ReportGenerator';
 import NetworkAnalytics from './pages/NetworkAnalytics';
 import DataImport from './pages/DataImport';
+import PricingManager from './pages/PricingManager';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -109,6 +110,7 @@ const AuthenticatedApp = () => {
         <Route path="/reports" element={<ReportGeneratorPage />} />
         <Route path="/network-analytics" element={<NetworkAnalytics />} />
         <Route path="/import" element={<DataImport />} />
+        <Route path="/admin/pricing" element={<PricingManager />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

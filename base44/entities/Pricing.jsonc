@@ -1,0 +1,101 @@
+{
+  "name": "Pricing",
+  "type": "object",
+  "properties": {
+    "product_name": {
+      "type": "string",
+      "description": "App/product name (e.g., 'Age UK Bury', 'HealthServices', 'CommunityExchange')"
+    },
+    "tier_name": {
+      "type": "string",
+      "enum": [
+        "Free",
+        "Starter",
+        "Pro",
+        "Enterprise"
+      ],
+      "description": "Subscription tier level"
+    },
+    "price_monthly": {
+      "type": "number",
+      "description": "Monthly price in GBP"
+    },
+    "price_annually": {
+      "type": "number",
+      "description": "Annual price in GBP (optional discount)"
+    },
+    "currency": {
+      "type": "string",
+      "default": "GBP",
+      "description": "Currency code"
+    },
+    "billing_cycle": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "annual"
+      ],
+      "default": "monthly"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "included": {
+            "type": "boolean"
+          },
+          "limit": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "List of features with inclusion status"
+    },
+    "max_users": {
+      "type": "number",
+      "description": "Maximum users allowed (null for unlimited)"
+    },
+    "max_records": {
+      "type": "number",
+      "description": "Maximum records/data points (null for unlimited)"
+    },
+    "support_level": {
+      "type": "string",
+      "enum": [
+        "email",
+        "priority",
+        "dedicated",
+        "24/7"
+      ],
+      "default": "email"
+    },
+    "description": {
+      "type": "string",
+      "description": "Tier description/tagline"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this tier is currently available"
+    },
+    "is_popular": {
+      "type": "boolean",
+      "default": false,
+      "description": "Highlight as recommended tier"
+    },
+    "display_order": {
+      "type": "number",
+      "description": "Sort order in display"
+    }
+  },
+  "required": [
+    "product_name",
+    "tier_name",
+    "price_monthly",
+    "features"
+  ]
+}
