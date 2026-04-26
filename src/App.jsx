@@ -4,6 +4,7 @@ import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
+import { BranchProvider } from '@/lib/BranchContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 
 import AppLayout from './components/layout/AppLayout';
@@ -41,7 +42,6 @@ import NetworkSettings from './pages/NetworkSettings';
 import StaffScheduling from './pages/StaffScheduling';
 import Volunteers from './pages/Volunteers';
 import ReportGeneratorPage from './pages/ReportGenerator';
-import NetworkAnalytics from './pages/NetworkAnalytics';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -105,7 +105,6 @@ const AuthenticatedApp = () => {
         <Route path="/scheduling" element={<StaffScheduling />} />
         <Route path="/volunteers" element={<Volunteers />} />
         <Route path="/reports" element={<ReportGeneratorPage />} />
-        <Route path="/network-analytics" element={<NetworkAnalytics />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
@@ -115,12 +114,14 @@ const AuthenticatedApp = () => {
 function App() {
   return (
     <AuthProvider>
-      <QueryClientProvider client={queryClientInstance}>
-        <Router>
-          <AuthenticatedApp />
-        </Router>
-        <Toaster />
-      </QueryClientProvider>
+      <BranchProvider>
+        <QueryClientProvider client={queryClientInstance}>
+          <Router>
+            <AuthenticatedApp />
+          </Router>
+          <Toaster />
+        </QueryClientProvider>
+      </BranchProvider>
     </AuthProvider>
   )
 }
