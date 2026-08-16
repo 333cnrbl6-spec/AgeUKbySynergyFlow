@@ -20,5 +20,9 @@
     "branch_name": {
       "type": "string"
     }
-  }
+  },
+  "required": [
+    "branch_id",
+    "branch_name"
+  ]
 }
