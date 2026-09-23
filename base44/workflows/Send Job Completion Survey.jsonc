@@ -1,0 +1,43 @@
+{
+  "name": "Send Job Completion Survey",
+  "description": "Sends customer satisfaction survey when a job is marked as completed",
+  "trigger": {
+    "condition": "${ ((.trigger.changed_fields | index(\"status\") != null) and (.trigger.data.status == \"completed\")) }",
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "update"
+      ],
+      "entity_name": "Job"
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "send_job_completion_survey",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "run_function": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "sendCompletionSurvey",
+            "args": {
+              "job_id": "data.id",
+              "job_title": "data.title",
+              "client_name": "data.client_name",
+              "client_email": "data.client_email",
+              "completed_date": "data.created_date"
+            }
+          },
+          "then": "end"
+        }
+      }
+    ]
+  },
+  "x-base44-migrated-from-automation": {
+    "legacy_payload_function": "sendCompletionSurvey"
+  }
+}
